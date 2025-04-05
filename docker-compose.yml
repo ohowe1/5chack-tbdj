@@ -63,7 +63,7 @@ services:
     working_dir: /srv/5chack-tbdj/backend
     command: yarn dev
     environment:
-      DB_URL: mongodb://5chack-tbdj:local_dev@db
+      MONGO_URI: mongodb://5chack-tbdj:local_dev@db
 
 networks:
     backend:
