@@ -1,5 +1,8 @@
-export type UserUUID = string;
-
 export type TUser = {
-  uuid: UserUUID;
+    id: string;
+    email: string;
+    displayName: string;
+    firstName: string;
+    lastName: string;
+    googleId: string;
 }

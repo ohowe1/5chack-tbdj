@@ -1,20 +1,46 @@
-import express, { Application } from "express";
-import pino from "pino";
-import connectDB from "./core/db";
-
-import indexRoutes from "./routes/index.route";
+import express, { Application } from 'express';
+import session from 'express-session';
+import auth from './config/auth';
 
 const app: Application = express();
-const logger = pino();
 
-logger.info("Starting the server...");
+// Middleware for sessions
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'default-secret',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-connectDB(logger);
+// Initialize Passport
+app.use(auth.initialize());
+app.use(auth.session());
 
-app.use(express.json());
-app.use('/', indexRoutes);
+// Google OAuth Routes
+app.get(
+  '/auth/google',
+  auth.authenticate('google', { scope: ['profile'] })
+);
 
-const PORT = process.env.PORT || 8080;
+app.get(
+  '/auth/google/callback',
+  auth.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+    res.redirect('/profile'); // Redirect to a profile page after successful login
+  }
+);
+
+// Protected Route
+app.get('/profile', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/auth/google');
+  }
+  res.send(`Hello, ${(req.user as any).name}`);
+});
+
+// Start the server
+const PORT = process.env.BACKEND_PORT || 8080;
 app.listen(PORT, () => {
-  logger.info(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
