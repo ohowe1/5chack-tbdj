@@ -8,13 +8,26 @@ export enum POST_STATUS {
   COMPLETED,
   CANCELED
 }
+export enum POST_BACKER_STATUS {
+  PENDING = 0,
+  CONFIRMED,
+  CANCELED
+}
+
+export type TPostBacker = {
+  user: Schema.Types.ObjectId; // User who backed the post
+  amount: number; // Amount backed
+  back_date: Date; // Date when the backing was made
+  status: POST_BACKER_STATUS
+}
 
 export type TPost = {
   uuid: UUID,
   title: string;
   description: string;
-  bounty: number;
   author: Schema.Types.ObjectId; // User
+  total_backed?: number; // Total amount backed, calculated from backers
+  backers: TPostBacker[]; // Array of backers
   organization: Schema.Types.ObjectId; // Organization
   status: POST_STATUS
   created_at: Date;

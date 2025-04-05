@@ -5,16 +5,19 @@
   "license": "UNLICENSED",
   "type": "module",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-session": "^1.17.3",
     "mongoose": "^8.13.2",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "pino": "^9.6.0",
+    "pino-http": "^10.4.0",
     "shared": "workspace:^"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/cors": "^2",
     "@types/express": "^5.0.1",
     "@types/express-session": "^1.17.6",
     "@types/node": "^22.14.0",

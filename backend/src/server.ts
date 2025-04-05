@@ -1,8 +1,18 @@
-import express, { Application } from 'express';
-import session from 'express-session';
 import auth from './config/auth';
+import session from 'express-session';
+import express, { Application } from "express";
+import pino from "pino";
+import connectDB from "./core/db";
+import cors from "cors";
+import loggerMiddleware from "pino-http";
+
+import indexRoutes from "./routes/index.route";
+import postRoutes from "./routes/post.route";
 
 const app: Application = express();
+
+const logger = pino();
+logger.level = "debug";
 
 // Middleware for sessions
 app.use(
@@ -17,6 +27,24 @@ app.use(
 app.use(auth.initialize());
 app.use(auth.session());
 
+const options: cors.CorsOptions = {
+  origin: [
+    `http://localhost:${process.env.FRONTEND_PORT || 3000}`,
+    `http://localhost:${process.env.PORT || 8080}`
+  ],
+};
+logger.debug("CORS setup");
+
+// Middleware
+app.use(
+  express.json(),
+  loggerMiddleware({ logger: logger }),
+  cors(options),
+);
+
+
+app.use('/', indexRoutes);
+app.use('/posts', postRoutes)
 // Google OAuth Routes
 app.get(
   '/auth/google',
