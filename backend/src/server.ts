@@ -11,9 +11,11 @@ logger.info("Starting the server...");
 
 // connectDB(logger);
 
-app.use("/api/v3", indexRoutes);
+// Middleware and routes
+app.use(express.json()); // Parse JSON requests
+app.use('/api/v3', indexRoutes);
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   logger.info(`Server running on http://localhost:${PORT}`);
 });
