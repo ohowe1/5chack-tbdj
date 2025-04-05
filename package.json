@@ -16,5 +16,14 @@
     "docker:restart": "docker compose restart"
   },
   "license": "UNLICENSED",
-  "packageManager": "yarn@4.8.1"
+  "packageManager": "yarn@4.8.1",
+  "dependencies": {
+    "@mantine/core": "^7.17.3",
+    "@mantine/hooks": "^7.17.3"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.3",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1"
+  }
 }
