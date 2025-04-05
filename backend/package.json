@@ -8,7 +8,7 @@
     "express": "^5.1.0",
     "mongoose": "^8.13.2",
     "pino": "^9.6.0",
-    "shared": "workspace:*"
+    "shared": "workspace:^"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -19,7 +19,7 @@
     "typescript-eslint": "^8.24.1"
   },
   "scripts": {
-    "dev": "tsx --env-file=.env.development watch src/server.ts",
+    "dev": "tsx watch --env-file=.env.development src/server.ts",
     "lint": "eslint ."
   }
 }
