@@ -14,12 +14,14 @@
     "@eslint/js": "^9.21.0",
     "@types/express": "^5.0.1",
     "eslint": "^9.21.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.24.1"
   },
   "scripts": {
-    "dev": "tsx --env-file=.env.development watch src/server.ts",
+    "dev": "tsx --env-file=.env.development --watch src/server.ts",
     "lint": "eslint ."
   }
 }
