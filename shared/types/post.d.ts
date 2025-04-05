@@ -1,6 +1,6 @@
 import { UUID } from "./global"
 import { TOrganization } from "./organization";
-import { TUser, UserUUID } from "./user";
+import { TUser } from "./user";
 import { Schema } from "mongoose";
 
 export enum POST_STATUS {

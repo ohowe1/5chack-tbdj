@@ -2,6 +2,7 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import mongoose from 'mongoose';
 import { User } from '../models/user.model';
+import { getOrCreateUser } from 'controllers/user.controller';
 
 // Configure passport strategies
 passport.use(new GoogleStrategy({
@@ -10,18 +11,9 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback',
   },
   async (accessToken, refreshToken, profile, done) => {
-    const Users = mongoose.model("User", User);
     try {
       // Find or create user logic
-      let user = await Users.findOne({ googleId: profile.id });
-      
-      if (!user) {
-        user = await Users.create({
-          googleId: profile.id,
-          displayName: profile.displayName,
-          email: profile.emails?.[0]?.value,
-        });
-      }
+      let user = getOrCreateUser(profile.id, profile.displayName, profile.emails?.[0]?.value!);
       
       return done(null, user);
     } catch (error) {
