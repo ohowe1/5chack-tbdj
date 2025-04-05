@@ -9,11 +9,10 @@ const logger = pino();
 
 logger.info("Starting the server...");
 
-// connectDB(logger);
+connectDB(logger);
 
-// Middleware and routes
-app.use(express.json()); // Parse JSON requests
-app.use('/api/v3', indexRoutes);
+app.use(express.json());
+app.use('/', indexRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
