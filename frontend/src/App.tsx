@@ -5,6 +5,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import PostDetails from "./pages/PostDetails";
 import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 import "@mantine/core/styles.css";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/post/:id" element={<PostDetails />} />
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/edit-post/:id" element={<EditPost />} />
           <Route path="/back-bounty/:id" element={<BackBounty />} />
         </Route>
       </Routes>

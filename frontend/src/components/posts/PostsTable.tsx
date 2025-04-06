@@ -1,3 +1,4 @@
+import { Key } from "react";
 import { TPostFilled } from "../../../../shared/types/post";
 import PostCard from "./PostCard";
 
@@ -7,7 +8,7 @@ function PostsTable({ posts }: { posts: TPostFilled[] }) {
         {
           posts.length > 0 ? (
             posts.map((post) => (
-              <PostCard post={post} />
+                <PostCard post={post} />
             ))
           ) : (
             <p className="text-center text-gray-500">No posts available.</p>
