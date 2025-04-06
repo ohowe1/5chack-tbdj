@@ -31,11 +31,11 @@ function PostDetails() {
     <DefaultLayout>
       <div className="flex flex-col my-4">
         <div className='my-2'>
-          <h1 className="text-3xl font-bold">Post Title</h1>
-          <h2 className="text-gray-500 text-lg">Author Example | 4/5/25</h2>
+          <h1 className="text-3xl font-bold">{postData?.title}</h1>
+          <h2 className="text-gray-500 text-lg"> {postData?.author?.toLocaleString()} | {postData?.created_at?.toLocaleString()}</h2>
         </div>
         
-        <p className='break-all'>Description DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription DescriptionDescription Description Description</p>
+        <p className='break-all'>{postData?.description}</p>
 
         <Button
         className='w-1/2 mx-auto mt-8'
