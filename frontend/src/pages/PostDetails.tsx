@@ -8,6 +8,8 @@ import { fetchAPI } from "../utils/api";
 import { useAuth } from '../context/AuthContext';
 
 
+
+
 function PostDetails() {
   const { id } = useParams();
   const { user } = useAuth();

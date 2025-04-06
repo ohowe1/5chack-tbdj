@@ -62,6 +62,6 @@ export type TPostCompletionRequest = {
 }
 
 export type TPostCompletionRequestFilled = TPostCompletionRequest & {
-  post: TPost;
-  requester: TUser
+  post: TPost; // The post being completed
+  requester: TUser; // The user requesting the completion
 }
