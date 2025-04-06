@@ -23,7 +23,7 @@ export default function NavBar() {
   // Implement checking if user is logged in 
 
   return (
-    <Navbar className="w-full bg-white px-2 pt-6 pb-4">
+    <Navbar className="w-full bg-white px-2 py-2" height="3rem">
       <NavbarContent justify="start">
         <NavbarBrand>
           <Link href="/">

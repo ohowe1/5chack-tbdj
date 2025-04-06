@@ -3,21 +3,26 @@ import {
   TextInput,
   NumberInput,
   Textarea, 
-  Button
 } from "@mantine/core";
+import { Button } from "@heroui/react";
 import { fetchAPI } from "../utils/api";
+import { useNavigate } from 'react-router-dom';
+import { TPost } from "shared/types/post";
+
 
 function CreatePost() {
+  const navigate = useNavigate();
+
   // Function to handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = new FormData(e.currentTarget);
-    console.log(data.get("title"));
-    await fetchAPI("posts", "POST", {
+    const createdBounty = (await fetchAPI("posts", "POST", {
       title: data.get("title"),
-      description: data.get("description"),})
+      description: data.get("description"),})) as TPost
 
+    navigate(`/back-bounty/${createdBounty._id}`)
   }
 
   return (
@@ -44,19 +49,12 @@ function CreatePost() {
             name="description"
             required
           />
-          <NumberInput 
-            placeholder="Bounty amount"
-            label="Bounty Amount"
-            name="amount"
-            required 
-            min={0}
-            />
           <Button
-          size="sm"
           type="submit"
           className="w-1/2 mx-auto mt-4"
+          
            >
-            Submit
+            Create Bounty
           </Button>
         </form>
 

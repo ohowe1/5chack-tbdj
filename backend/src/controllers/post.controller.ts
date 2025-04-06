@@ -24,7 +24,7 @@ export async function getPosts() {
 }
 
 export async function getPost(post_id: string | mongoose.Types.ObjectId, options: QueryOptions = {}) {
-  return populatePostAndApplyOptions(Posts.findOne({ uuid: post_id }), options);
+  return populatePostAndApplyOptions(Posts.findById(post_id), options);
 }
 
 export async function getPostsByOrganization(
