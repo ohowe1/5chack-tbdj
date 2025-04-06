@@ -1,0 +1,34 @@
+.alertRoot {
+    position: relative;
+  }
+  
+  .alertContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .checkButton {
+    padding: 4px;
+    min-width: auto;
+    height: auto;
+    margin-left: 12px;
+  }
+  
+
+  .expandedCard {
+    margin-bottom: 16px;
+    overflow: visible;
+  }
+  
+  .cardHeader {
+    background-color: var(--mantine-color-cyan-0);
+    border-bottom: 1px solid var(--mantine-color-cyan-2);
+  }
+  
+  .closeExpandedButton {
+    padding: 4px;
+    min-width: auto;
+    height: auto;
+  }
+  

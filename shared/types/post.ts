@@ -60,3 +60,8 @@ export type TPostCompletionRequest = {
   requested_at: Date; // Timestamp of when the request was made
   status: POST_COMPLETION_REQUEST_STATUS; // Current status of the request
 }
+
+export type TPostCompletionRequestFilled = TPostCompletionRequest & {
+  post: TPost; // The post being completed
+  requester: TUser; // The user requesting the completion
+}

@@ -5,8 +5,8 @@ export default function IncomingBounteesPage() {
     return (
       <Box>
         <ProfileLayout>
-        <h1>Incoming Bountees</h1>
-        <p>View and manage your incoming bountees here.</p>
+        <h1 className="font-bold text-xl mb-1">Incoming Bountees</h1>
+        <p className="mb-6 font text-sm">View and manage your incoming bountees here.</p>
         </ProfileLayout>
       </Box>
     )

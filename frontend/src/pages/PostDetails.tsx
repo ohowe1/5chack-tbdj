@@ -5,6 +5,8 @@ import { TPostFilled } from "shared/types/post";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
 
+
+
 function PostDetails() {
   const { id } = useParams();
 

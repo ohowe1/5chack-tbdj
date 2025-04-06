@@ -14,6 +14,7 @@ import {
 import { Code, Group, Anchor, Button } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import classes from "./css/NavbarSimple.module.css";
+import { useAuth } from "../context/AuthContext";
 
 const data = [
   { link: "/profile/notifications", label: "Notifications", icon: IconBellRinging },
@@ -30,6 +31,9 @@ export function ProfileNavBar() {
   const [active, setActive] = useState("");
   const [collapsed, setCollapsed] = useState(false);
   const { width } = useViewportSize();
+
+  const { logout } = useAuth();
+
 
   // Set active based on current path
   useEffect(() => {
@@ -68,7 +72,7 @@ export function ProfileNavBar() {
 
   const footerLinks = [
     { link: "/profile/switch-account", label: "Change account", icon: IconSwitchHorizontal },
-    { link: "/logout", label: "Logout", icon: IconLogout },
+    { label: "Logout", icon: IconLogout },
   ].map((item) => (
     <a
       className={`${classes.link} ${collapsed ? classes.collapsedLink : ""}`}
@@ -76,7 +80,7 @@ export function ProfileNavBar() {
       key={item.label}
       onClick={(event) => {
         event.preventDefault();
-        navigate(item.link);
+        logout();
       }}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
