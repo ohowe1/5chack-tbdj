@@ -1,27 +1,27 @@
-export function fetchAPI(endpoint: string, method: string = 'GET', body: any = null) {
-  const url = `http://localhost:3000/api/${endpoint}`;
+export async function fetchAPI(
+  endpoint: string,
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
+  body?: unknown
+): Promise<unknown> {
+  const url = `http://localhost:3000/${endpoint}`;
 
   const options: RequestInit = {
     method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    credentials: 'include', // Include cookies in the request
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    ...(typeof body !== 'undefined' ? { body: JSON.stringify(body) } : {}),
   };
 
-  if (body) {
-    options.body = JSON.stringify(body);
-  }
+  try {
+    const response = await fetch(url, options);
 
-  return fetch(url, options)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error('Error fetching API:', error);
-      throw error;
-    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching API:', error);
+    throw error;
+  }
 }
