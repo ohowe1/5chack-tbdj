@@ -2362,6 +2362,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@paypal/paypal-js@npm:^8.1.2":
+  version: 8.2.0
+  resolution: "@paypal/paypal-js@npm:8.2.0"
+  dependencies:
+    promise-polyfill: "npm:^8.3.0"
+  checksum: 10/307ddc4e6ea5629b2ef6a339063543ee286791a4a557d4e5c84e9a74ba4d2d8893403bc555aceb11b41948fa86adf9a9a61bcce2ba7c3ff632170ba45185176a
+  languageName: node
+  linkType: hard
+
+"@paypal/react-paypal-js@npm:^8.8.2":
+  version: 8.8.2
+  resolution: "@paypal/react-paypal-js@npm:8.8.2"
+  dependencies:
+    "@paypal/paypal-js": "npm:^8.1.2"
+    "@paypal/sdk-constants": "npm:^1.0.122"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+    react-dom: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 10/5094a5a5cddbe95b5e2ba339cd6b6d476fd0f914a761f5932a45ac1642b1b89be740846a4c1f241cae0f11e7fbe56a94eafd4fe907dba1c0db48eff8775cd515
+  languageName: node
+  linkType: hard
+
+"@paypal/sdk-constants@npm:^1.0.122":
+  version: 1.0.153
+  resolution: "@paypal/sdk-constants@npm:1.0.153"
+  dependencies:
+    hi-base32: "npm:^0.5.0"
+  checksum: 10/527a10b83e5b268cab720b3bb5b042dc3cfff9532d6e8ab04e5e93dd7497717c8e71095cb9887645dde76d9dc1a8f9478be2ca1f2886b7e27a46775159e634ae
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -5959,6 +5990,7 @@ __metadata:
     "@mantine/core": "npm:^7.17.3"
     "@mantine/hooks": "npm:^7.17.3"
     "@mantinex/mantine-logo": "npm:^1.1.0"
+    "@paypal/react-paypal-js": "npm:^8.8.2"
     "@tabler/icons-react": "npm:^3.31.0"
     "@tailwindcss/vite": "npm:^4.1.3"
     "@types/react": "npm:^19.0.10"
@@ -6188,6 +6220,13 @@ __metadata:
   version: 5.0.0
   resolution: "help-me@npm:5.0.0"
   checksum: 10/5f99bd91dae93d02867175c3856c561d7e3a24f16999b08f5fc79689044b938d7ed58457f4d8c8744c01403e6e0470b7896baa344d112b2355842fd935a75d69
+  languageName: node
+  linkType: hard
+
+"hi-base32@npm:^0.5.0":
+  version: 0.5.1
+  resolution: "hi-base32@npm:0.5.1"
+  checksum: 10/f2cd52dca0f73d04786b98401aee2e27c58d015cc040eb35922c4231a06ca9e0cb79ce0a1556f18acf0f33233dbd52f7106fc950a38fdd65e5cb5758e4fcd9a1
   languageName: node
   linkType: hard
 
@@ -7533,6 +7572,13 @@ __metadata:
   version: 4.0.1
   resolution: "process-warning@npm:4.0.1"
   checksum: 10/8b0ec9129845215c1e4a72f3a66082e3aa76f81e265374de6c70f2213f4516856316ed88338b8520e9274dab947d6b3750684b448f45148f57757f365e96793f
+  languageName: node
+  linkType: hard
+
+"promise-polyfill@npm:^8.3.0":
+  version: 8.3.0
+  resolution: "promise-polyfill@npm:8.3.0"
+  checksum: 10/f735f59e464174f720fec9c41c5029ec1014e62e05d61e39d8d2290a0bc4dd7c36a0782d3202f1775d09d0b33a47fef289db38c437534769b187da22e03bfa23
   languageName: node
   linkType: hard
 

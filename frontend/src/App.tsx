@@ -1,16 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import PostDetails from './pages/PostDetails';
 import NotificationsPage from "./pages/Notifications.tsx";
 import OutgoingBounteesPage from "./pages/OutgoingBountees.tsx";
 import IncomingBounteesPage from "./pages/IncomingBountees.tsx";
 import BillingPage from "./pages/Billing.tsx";
 import SettingsPage from "./pages/Settings.tsx";
-import CreatePost from './pages/CreatePost';
-import '@mantine/core/styles.css';
-import { createTheme, MantineProvider } from '@mantine/core';
-import BackBounty from './pages/BackBounty';
+import "@mantine/core/styles.css";
+import { createTheme, MantineProvider } from "@mantine/core";
+import BackBounty from "./pages/BackBounty";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
@@ -39,7 +35,7 @@ function App() {
         <Route path="/profile/billing" element={<BillingPage />} />
         <Route path="/profile/settings" element={<SettingsPage />} />
         <Route path="/create-post" element={<CreatePost />} />
-        
+
         {/* Protected routes using Outlet pattern */}
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Feed />} />
