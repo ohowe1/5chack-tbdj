@@ -11,6 +11,7 @@ import postRoutes from "./routes/post.route";
 import backRoutes from "./routes/back.route";
 import userRoutes from "./routes/user.route";
 import completionsRoutes from "./routes/completions.route";
+import paymentRoutes from "./routes/payment.route";
 
 const app: Application = express();
 
@@ -54,6 +55,7 @@ app.use('/posts', postRoutes)
 app.use('/back', backRoutes)
 app.use('/user', userRoutes)
 app.use('/completions', completionsRoutes);
+app.use('/payment', paymentRoutes)
 
 app.get(
   '/auth/google',

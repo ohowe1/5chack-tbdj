@@ -14,10 +14,12 @@ export enum POST_BACKER_STATUS {
 }
 
 export type TPostBacker = {
+  _id: Types.ObjectId; // Backer ID
   user: Types.ObjectId; // User who backed the post
   amount: number; // Amount backed
   back_date: Date; // Date when the backing was made
-  status: POST_BACKER_STATUS
+  status: POST_BACKER_STATUS,
+  order_id?: string; // Optional order ID for payment confirmation
 }
 
 export type TPost = {
