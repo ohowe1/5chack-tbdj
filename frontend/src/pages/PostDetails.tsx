@@ -10,7 +10,7 @@ import { useAuth } from '../context/AuthContext';
 
 function PostDetails() {
   const { id } = useParams();
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
 
   const [postData, setPostData] = useState<TPostFilled | null>(null);
 
