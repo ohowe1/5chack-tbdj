@@ -69,26 +69,68 @@ export async function captureOrder(orderID: string) {
   return response.data; // Contains captured payment details
 }
 
-// export async function createPayout(recipients: Object) {
-//   const accessToken = await getAccessToken();
-//   const response = await axios.post(
-//     `${PAYPAL_API_URL}/v1/payments/payouts`,
-//     {
-//       sender_batch_header: {
-//         sender_batch_id: `Payouts_${Date.now()}`,
-//         email_subject: 'You have a payout!',
-//       },
-//       items: recipients,
-//     },
-//     {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     }
-//   );
-//   return response.data; // Contains payout_batch_id
-// }
+export async function refundPayment(orderID: string) {
+  try {
+    // 1. Get order details to find capture ID
+    const accessToken = await getAccessToken();
+    const orderUrl = `${process.env.PAYPAL_API_URL}/v2/checkout/orders/${orderID}`;
+    
+    const orderDetails = await axios.get(orderUrl, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    
+    // Extract the capture ID from the order
+    const captureID = orderDetails.data.purchase_units[0]?.payments?.captures[0]?.id;
+    
+    if (!captureID) {
+      throw new Error("No capture ID found for this order");
+    }
+    
+    // 2. Process the refund for the capture
+    const refundUrl = `${process.env.PAYPAL_API_URL}/v2/payments/captures/${captureID}/refund`;
+    
+    const refundResponse = await axios.post(
+      refundUrl,
+      {}, // Empty body means refund the full amount
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    
+    return refundResponse.data;
+  } catch (error) {
+    console.error("Error processing refund:", error);
+    throw error;
+  }
+}
+
+export async function createPayout(recipients: Object) {
+  const accessToken = await getAccessToken();
+  const response = await axios.post(
+    `${process.env.PAYPAL_API_URL}/v1/payments/payouts`,
+    {
+      sender_batch_header: {
+        sender_batch_id: `Payouts_${Date.now()}`,
+        email_subject: 'You have a payout!',
+      },
+      items: recipients,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+  console.log("Payout response:", response.data);
+  return response.data; // Contains payout_batch_id
+}
 
 // const exampleRecipients = [
 //   {
