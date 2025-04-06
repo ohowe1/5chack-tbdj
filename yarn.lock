@@ -8,12 +8,6 @@ __metadata:
 "5chack-tbdj@workspace:.":
   version: 0.0.0-use.local
   resolution: "5chack-tbdj@workspace:."
-  dependencies:
-    "@mantine/core": "npm:^7.17.3"
-    "@mantine/hooks": "npm:^7.17.3"
-    postcss: "npm:^8.5.3"
-    postcss-preset-mantine: "npm:^1.17.0"
-    postcss-simple-vars: "npm:^7.0.1"
   languageName: unknown
   linkType: soft
 
@@ -5869,6 +5863,9 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.19"
     framer-motion: "npm:^12.6.3"
     globals: "npm:^15.15.0"
+    postcss: "npm:^8.5.3"
+    postcss-preset-mantine: "npm:^1.17.0"
+    postcss-simple-vars: "npm:^7.0.1"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-router: "npm:^7.5.0"
