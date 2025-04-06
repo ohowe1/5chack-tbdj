@@ -8,6 +8,8 @@ import loggerMiddleware from "pino-http";
 
 import indexRoutes from "./routes/index.route";
 import postRoutes from "./routes/post.route";
+import backRoutes from "./routes/back.route";
+import userRoutes from "./routes/user.route";
 
 const app: Application = express();
 
@@ -34,6 +36,7 @@ const options: cors.CorsOptions = {
     `http://localhost:${process.env.FRONTEND_PORT || 3000}`,
     `http://localhost:${process.env.PORT || 8080}`
   ],
+  credentials: true,
 };
 logger.debug("CORS setup");
 
@@ -47,12 +50,13 @@ app.use(
 
 app.use('/', indexRoutes);
 app.use('/posts', postRoutes)
-// Google OAuth Routes
+app.use('/back', backRoutes)
+app.use('/user', userRoutes)
+
 app.get(
   '/auth/google',
   auth.authenticate('google', { scope: ['profile', 'email'] })
 );
-
 app.get(
   '/auth/google/callback',
   auth.authenticate('google', {
@@ -60,14 +64,6 @@ app.get(
      successRedirect: 'http://localhost:' + (process.env.FRONTEND_PORT || 3000) + '/', // Redirect to profile page on success
   }),
 );
-
-// Protected Route
-app.get('/profile', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/auth/google');
-  }
-  res.send(`Hello, ${(req.user as any).name}`);
-});
 
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8080;

@@ -13,6 +13,7 @@ import {
 import {
   HomeIcon,
   UserIcon,
+  
 } from "@heroicons/react/24/outline";
 import { useState } from "react"
 
@@ -22,7 +23,7 @@ export default function NavBar() {
   // Implement checking if user is logged in 
 
   return (
-    <Navbar className="w-full bg-white px-2 pt-6 pb-4 flex items-center justify-between">
+    <Navbar className="w-full bg-white px-2 pt-6 pb-4">
       <NavbarContent justify="start">
         <NavbarBrand>
           <Link href="/">
@@ -33,20 +34,17 @@ export default function NavBar() {
       
       <NavbarContent 
         className=" sm:flex gap-4" 
+        justify="end"
       >
-          <Button 
-              variant="flat" 
-              as={Link}
-              href={loggedIn ? "/profile" : "/login"}
-              size="sm"
-              isIconOnly
-              startContent={
-                <UserIcon className="size-5" />
-              }
-              color='primary'
-            > 
+
+        <Link 
+          href={loggedIn ? "/profile" : "/login"}
+        >
+
+            <UserIcon className="size-5" />
              
-          </Button>
+        </Link>
+          
       </NavbarContent>
     </Navbar>
   )

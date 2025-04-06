@@ -22,9 +22,9 @@ export function Login(props: PaperProps) {
   return (
     <DefaultLayout>
       <Container flex={1} size={720} my={50}>
-      <Paper radius="md" p="xl" withBorder {...props}>
-        <Text size="xl" fw={500}>
-          Welcome to bountee, {type} with
+      <Paper radius="md" p="xl" withBorder {...props} className='flex flex-col items-center'>
+        <Text size="xl" className='font-bold' fw={500}>
+          Welcome to Bountee
         </Text>
 
         <Group grow mb="lg" mt="lg" >
