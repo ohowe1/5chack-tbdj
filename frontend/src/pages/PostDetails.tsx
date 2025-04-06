@@ -80,6 +80,8 @@ function PostDetails() {
             Back Bounty
           </Button>
           <Button
+          as={Link}
+          href={`/complete-bounty/${postData?._id}`}
           className='mt-8'
           >
             Complete Bounty
