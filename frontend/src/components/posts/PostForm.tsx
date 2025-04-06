@@ -5,7 +5,7 @@ import {
 import { Button } from "@heroui/react";
 import { fetchAPI } from "../../utils/api";
 import { useNavigate } from 'react-router-dom';
-import { TPostFilled } from "shared/types/post";
+import { TPostFilled, POST_STATUS } from "shared/types/post";
 import { useEffect, useState } from "react"
 
 
@@ -40,7 +40,14 @@ function PostForm({ post }: { post: TPostFilled | null } ) {
   };
 
   const changeStatus = async () => {
-    
+    if (post) {
+      const editedBounty = (await fetchAPI(`posts/${post._id}`, "PUT", {
+        status: POST_STATUS.CANCELED
+      })) as TPostFilled
+      console.log(editedBounty)
+    }
+  
+    navigate("/")
   }
 
   return (
@@ -81,6 +88,7 @@ function PostForm({ post }: { post: TPostFilled | null } ) {
             <Button
               className="w-1/2 mx-auto"
               color="danger"
+              onPress={changeStatus}
               >
                 Cancel Bounty          
           </Button> :
