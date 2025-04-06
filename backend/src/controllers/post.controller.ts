@@ -23,8 +23,13 @@ export async function getPosts() {
   return populatePostAndApplyOptions(Posts.find());
 }
 
-export async function getPost(post_id: string | mongoose.Types.ObjectId, options: QueryOptions = {}) {
-  return populatePostAndApplyOptions(Posts.findById(post_id), options);
+export async function getPost(post_id: string | mongoose.Types.ObjectId, organization_id?: string | mongoose.Types.ObjectId) {
+  if (organization_id) {
+    return populatePostAndApplyOptions(
+      Posts.findOne({ _id: post_id, organization: organization_id })
+    );
+  }
+  return populatePostAndApplyOptions(Posts.findById(post_id));
 }
 
 export async function getPostsByOrganization(

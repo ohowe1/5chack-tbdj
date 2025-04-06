@@ -10,6 +10,7 @@ import indexRoutes from "./routes/index.route";
 import postRoutes from "./routes/post.route";
 import backRoutes from "./routes/back.route";
 import userRoutes from "./routes/user.route";
+import completionsRoutes from "./routes/completions.route";
 
 const app: Application = express();
 
@@ -23,7 +24,7 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET || 'default-secret',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false
   })
 );
 
@@ -52,6 +53,7 @@ app.use('/', indexRoutes);
 app.use('/posts', postRoutes)
 app.use('/back', backRoutes)
 app.use('/user', userRoutes)
+app.use('/completions', completionsRoutes);
 
 app.get(
   '/auth/google',
