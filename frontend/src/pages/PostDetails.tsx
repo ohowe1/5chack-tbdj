@@ -1,6 +1,6 @@
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
-import { Button } from "@heroui/react";
+import { Button, Link } from '@heroui/react';
 import { TPostFilled } from "shared/types/post";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
@@ -48,7 +48,21 @@ function PostDetails() {
 
         <p className="break-all">{postData?.description}</p>
 
-        <Button className="w-1/2 mx-auto mt-8">Sign Me Up!</Button>
+        <div className='flex flex-row justify-center items-center gap-2'>
+          <Button
+          className='mt-8 bg-gray-400'
+          as={Link}
+          href={`/back-bounty/${id}`}
+          >
+            Back Bounty
+          </Button>
+          <Button
+          className=' mt-8'
+          >
+            Complete Bounty
+          </Button>
+        </div>
+       
       </div>
     </DefaultLayout>
   );
