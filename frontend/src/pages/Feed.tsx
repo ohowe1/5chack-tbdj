@@ -11,7 +11,6 @@ function Feed() {
 
   useEffect(() => {
     async function fetchPosts() {
-      
       const response = await fetchAPI("posts/feed", "GET");
 
       if (response && Array.isArray(response)) {
