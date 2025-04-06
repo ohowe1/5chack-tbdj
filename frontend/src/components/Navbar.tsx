@@ -8,12 +8,12 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
-  
+  Button
 } from "@heroui/react"
-import { Button } from '@mantine/core';
 import {
   HomeIcon,
   UserIcon,
+  
 } from "@heroicons/react/24/outline";
 import { useState } from "react"
 
@@ -23,7 +23,7 @@ export default function NavBar() {
   // Implement checking if user is logged in 
 
   return (
-    <Navbar className="w-full bg-white px-2 pt-6 pb-4 flex items-center justify-between">
+    <Navbar className="w-full bg-white px-2 pt-6 pb-4">
       <NavbarContent justify="start">
         <NavbarBrand>
           <Link href="/">
@@ -34,6 +34,7 @@ export default function NavBar() {
       
       <NavbarContent 
         className=" sm:flex gap-4" 
+        justify="end"
       >
         <Link 
           href={loggedIn ? "/profile" : "/login"}

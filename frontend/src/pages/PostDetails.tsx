@@ -1,6 +1,6 @@
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
-import { Button } from '@mantine/core';
+import { Button } from '@heroui/react';
 
 
 function PostDetails() {
