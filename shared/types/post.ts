@@ -21,6 +21,7 @@ export type TPostBacker = {
 }
 
 export type TPost = {
+  _id: Types.ObjectId; // Post ID
   title: string;
   description: string;
   author: Types.ObjectId; // User

@@ -7,7 +7,7 @@ export default function PostCard({ post }: { post: TPost }) {
       href="/post/1" // replace with post.uuid
       className="w-full"
     >
-      <Card className="border-1 border-gray-300 rounded-lg shadow-sm w-full my-4 px-6 py-4">
+      <Card className="border-1 border-gray-300 rounded-lg shadow-sm w-full mb-3 px-6 py-4">
         <CardBody>
           <div className="flex flex-row justify-between items-center">
             <div>

@@ -10,17 +10,25 @@ function Home() {
 
   return (
     <DefaultLayout>
-      <div className="relative h-full">
-        <h1 className='text-2xl font-bold'>Welcome to Bountee!</h1>
-        <p>Explore commissions to complete</p>
-        <PostsTable />
+      <div className="relative">
+        <div className='h-[80vh] overflow-scroll'>
+          <h1 className='text-2xl font-bold'>Welcome to Bountee!</h1>
+          <p>Explore commissions to complete</p>
+
+          <div className='my-4'>
+            <PostsTable />
+          </div>
+        </div>
+        
+        
+        
 
         <div className='absolute right-0 bottom-2'>
         <Link
           href="/create-post"
         >
         <Button 
-          className='absolute right-0 bottom-2'
+          className='fixed right-2 bottom-2'
           isIconOnly
           radius="full"
         >
