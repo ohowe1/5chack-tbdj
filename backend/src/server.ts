@@ -67,6 +67,13 @@ app.get(
   }),
 );
 
+app.post('/auth/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.status(200).json({ message: 'Logout successful' });
+  });
+});
+
 // Start the server
 const PORT = process.env.BACKEND_PORT || 8080;
 app.listen(PORT, () => {

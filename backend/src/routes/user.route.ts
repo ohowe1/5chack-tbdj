@@ -27,4 +27,20 @@ router.get("/:user_id", async (req, res) => {
   }
   res.status(200).json(foundUser);
 });
+
+router.post("/update-email", async (req, res) => {
+  const user = req.user as HydratedDocument<TUser>;
+  const { email } = req.body as { email?: string };
+  if (!email || !email.trim()) {
+    res.status(400).json({ error: "Email is required" });
+    return;
+  }
+  user.payoutEmail = email.trim();
+  await user.save();
+
+  res
+    .status(200)
+    .json(user);
+});
+
 export default router;

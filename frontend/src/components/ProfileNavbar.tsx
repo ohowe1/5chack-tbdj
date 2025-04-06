@@ -7,10 +7,8 @@ import {
   IconLogout,
   IconReceipt2,
   IconSettings,
-  IconSwitchHorizontal,
   IconChevronLeft,
   IconChevronRight,
-  IconHome,
 } from "@tabler/icons-react";
 import { Code, Group, Anchor, Button } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
@@ -21,7 +19,6 @@ const data = [
   { link: "/profile/notifications", label: "Notifications", icon: IconBellRinging },
   { link: "/profile/outgoing", label: "Outgoing Bountees", icon: IconAd2 },
   { link: "/profile/finished", label: "Finished Bountees", icon: IconAlbum },
-  { link: "/profile/billing", label: "Billing", icon: IconReceipt2 },
   { link: "/profile/settings", label: "Settings", icon: IconSettings },
 ];
 

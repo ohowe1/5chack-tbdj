@@ -1,4 +1,5 @@
 import {
+  approveCompletionRequest,
   createCompletionRequest,
   getCompletionRequest,
   getCompletionRequestsByPost,
@@ -8,7 +9,7 @@ import { getPost } from "../controllers/post.controller";
 import { Router } from "express";
 import { ensureAuthenticated } from "../middleware/auth.middleware";
 import { HydratedDocument } from "mongoose";
-import { POST_COMPLETION_REQUEST_STATUS } from "shared/types/post";
+import { POST_COMPLETION_REQUEST_STATUS, POST_STATUS } from "shared/types/post";
 import { TUser } from "shared/types/user";
 
 const router = Router();
@@ -30,6 +31,11 @@ router.post("/", async (req, res) => {
   const post = await getPost(post_id, user.organization);
   if (!post) {
     res.status(404).json({ error: "Post not found" });
+    return;
+  }
+
+  if (post.status !== POST_STATUS.OPEN) {
+    res.status(400).json({ error: "Post is not open for completion requests" });
     return;
   }
 
@@ -79,12 +85,12 @@ router.post("/:completion_id/gavel", async (req, res) => {
   }
 
   if (decision === "approve") {
-    completionRequest.status = POST_COMPLETION_REQUEST_STATUS.APPROVED; // Update the status to approved
+    await approveCompletionRequest(completionRequest._id);
   } else if (decision === "decline") {
     completionRequest.status = POST_COMPLETION_REQUEST_STATUS.DENIED; // Update the status to denied
+    await completionRequest.save();
   }
 
-  await completionRequest.save();
 
   res.status(200).json(completionRequest)
 });
