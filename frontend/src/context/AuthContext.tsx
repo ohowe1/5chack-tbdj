@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // call it here.
     // For now, we just clear the context and redirect to the login page.
     setUser(null);
-    window.location.href = "/login";
+    window.location.href = "/unlogged-home";
   };
 
   return (

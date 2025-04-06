@@ -30,7 +30,7 @@ export const ProtectedRoute = () => {
   }
   
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/unlogged-home" replace />;
   }
   
   return (

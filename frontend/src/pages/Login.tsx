@@ -11,12 +11,12 @@ import { GoogleButton } from '../components/GoogleButton';
 export function Login(props: PaperProps) {
   return (
     <DefaultLayout>
-      <Container flex={1} size={720} my={50}>
-      <Paper radius="md" p="xl" withBorder {...props} className='flex flex-col items-center'>
-        <Text size="xl" className='font-bold' fw={500}>
-          Welcome to <span className="font-bold">Bountee</span>
-        </Text>
-
+      <Container flex={1} size={720} my={50} className='flex flex-col items-center gap-2'>
+      
+      <Paper radius="md" p="xl" withBorder {...props} className='flex flex-col items-center gap-2 justify-center w-full mx-auto'>
+        <h1 className='font-bold text-2xl' >
+          Login with College:
+        </h1>
         <Group grow mb="lg" mt="lg" >
           <GoogleButton size="md" radius="xl">Google</GoogleButton>
         </Group>
