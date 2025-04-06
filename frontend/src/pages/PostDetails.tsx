@@ -6,7 +6,7 @@ import { TPostFilled } from "shared/types/post";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
 import { useAuth } from '../context/AuthContext';
-import { Box } from '@mantine/core';
+import { Box, Divider } from '@mantine/core';
 
 function PostDetails() {
   const { id } = useParams();
@@ -34,26 +34,6 @@ function PostDetails() {
     <DefaultLayout>
       <div className="flex flex-col my-4">
         <div className="my-2">
-          <div className='flex flex-row justify-between items-center'>
-            <div className='flex flex-row gap-4 items-center'>
-              <h1 className="text-3xl font-bold">{postData?.title}</h1>
-              {
-              user?._id == postData?.author._id ? 
-              <Button 
-                className='bg-default' 
-                startContent={<IconEdit className='size-4'/>}
-                isIconOnly
-                radius="full"
-                size="sm"
-                as={Link}
-                href={`/edit-post/${postData?._id}`}
-              >
-                
-              </Button> :
-              null
-            }
-            </div>
-            <h1 className="text-3xl font-bold text-[#4db7c5]">$ {postData?.total_backed}</h1>
             
 
           <div className="flex flex-row justify-between items-center">
@@ -95,17 +75,17 @@ function PostDetails() {
         {/* Section to display commission details */}
         {postData?.commission_backers && postData.commission_backers.length > 0 && (
           <div className="mt-8">
+            <Divider my="md" />
             <h2 className="text-xl font-bold text-[#4db7c5]">Trade Details</h2>
-            <ul className="list-disc pl-5">
               {postData.commission_backers.map((backer, index) => (
               <Box>
+                
                 <p>
                     <span className="font-medium">Barter:</span>{" "}
                     {backer.commission}
                   </p>
               </Box>
               ))}
-            </ul>
           </div>
         )}
 
@@ -131,7 +111,6 @@ function PostDetails() {
             </Button>
           </div>
         )}
-      </div>
       </div>
     </DefaultLayout>
   );
