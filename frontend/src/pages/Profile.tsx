@@ -1,13 +1,31 @@
 import DefaultLayout from "../components/DefaultLayout";
+import { ProfileNavBar } from "../components/ProfileNavbar";
+import {
+  Anchor,
+  Button,
+  Checkbox,
+  Divider,
+  Group,
+  Paper,
+  PaperProps,
+  Stack,
+  Text,
+  TextInput,
+  Container,
+  Box,
+} from '@mantine/core';
 
 function Profile() {
   return (
-    <DefaultLayout>
-      <div className="home">
-        <h1>Welcome to the Profile Page!</h1>
-        <p>This is the main page of our application.</p>
-      </div>
-    </DefaultLayout>
+    <Box
+      w="100%"
+      display="flex"
+      style={{ justifyContent: "flex-start" }}
+      p={0}
+      m={0}
+    >
+      <ProfileNavBar />
+    </Box>
   );
 }
 

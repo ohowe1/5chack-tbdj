@@ -11,6 +11,8 @@ __metadata:
   dependencies:
     "@mantine/core": "npm:^7.17.3"
     "@mantine/hooks": "npm:^7.17.3"
+    "@mantinex/mantine-logo": "npm:^1.1.0"
+    "@tabler/icons-react": "npm:^3.31.0"
     postcss: "npm:^8.5.3"
     postcss-preset-mantine: "npm:^1.17.0"
     postcss-simple-vars: "npm:^7.0.1"
@@ -2291,6 +2293,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantinex/mantine-logo@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@mantinex/mantine-logo@npm:1.1.0"
+  peerDependencies:
+    "@mantine/core": ">=7.0.0"
+    "@mantine/hooks": ">=7.0.0"
+    react: ^18.x || ^19.x
+    react-dom: ^18.x || ^19.x
+  checksum: 10/580e17d82faa67eb359c18655ecd5102ea1d2c1bbb56a79014e4a6022710545a8156db5dafeb47eea3f59793b23066b7ce74a73028cdeff7feedca3798952d9a
+  languageName: node
+  linkType: hard
+
 "@mongodb-js/saslprep@npm:^1.1.9":
   version: 1.2.1
   resolution: "@mongodb-js/saslprep@npm:1.2.1"
@@ -4031,6 +4045,24 @@ __metadata:
   dependencies:
     tslib: "npm:^2.8.0"
   checksum: 10/e3f32c6deeecfb0fa3f22edff03a7b358e7ce16d27b0f1c8b5cdc3042c5c4ce4da6eac0b781ab7cc4f54696ece657467d56734fb26883439fb00017385364c4c
+  languageName: node
+  linkType: hard
+
+"@tabler/icons-react@npm:^3.31.0":
+  version: 3.31.0
+  resolution: "@tabler/icons-react@npm:3.31.0"
+  dependencies:
+    "@tabler/icons": "npm:3.31.0"
+  peerDependencies:
+    react: ">= 16"
+  checksum: 10/edc80c6398a4df8a5dea78beb8f9a9ae3af2238860c7a5fe683fb7e5dfb36a2ad12732300cfeaebea3c6c55b28525c6a28eca82e1c35d66da2bc7be31c839fbb
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:3.31.0":
+  version: 3.31.0
+  resolution: "@tabler/icons@npm:3.31.0"
+  checksum: 10/400b6e250069074075243154354bdd5282c584c528fc42ef6bd903a4f5173256f3a984d14ab6d35dfe7d22c0313e5128cb30db70607b3f555cf18c468d118fcb
   languageName: node
   linkType: hard
 
@@ -5860,6 +5892,8 @@ __metadata:
     "@heroui/theme": "npm:^2.4.12"
     "@mantine/core": "npm:^7.17.3"
     "@mantine/hooks": "npm:^7.17.3"
+    "@mantinex/mantine-logo": "npm:^1.1.0"
+    "@tabler/icons-react": "npm:^3.31.0"
     "@tailwindcss/vite": "npm:^4.1.3"
     "@types/react": "npm:^19.0.10"
     "@types/react-dom": "npm:^19.0.4"
