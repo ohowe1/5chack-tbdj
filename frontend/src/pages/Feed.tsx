@@ -11,9 +11,7 @@ function Feed() {
 
   useEffect(() => {
     async function fetchPosts() {
-      // sleep for 1 second to simulate loading delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
+      
       const response = await fetchAPI("posts/feed", "GET");
 
       if (response && Array.isArray(response)) {

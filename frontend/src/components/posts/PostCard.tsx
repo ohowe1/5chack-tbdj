@@ -4,7 +4,7 @@ import { Card, CardBody, Link } from "@heroui/react";
 export default function PostCard({ post }: { post: TPost }) {
   return (
     <Link
-      href="/post/1" // replace with post.uuid
+      href={`/post/${post._id}`} // replace with post.uuid
       className="w-full"
     >
       <Card className="border-1 border-gray-300 rounded-lg shadow-sm w-full mb-3 px-6 py-4">
