@@ -33,6 +33,14 @@ export type TPost = {
   completion_requests?: Types.ObjectId[]; // PostCompletionRequest IDs
 }
 
+export type TPostFilled = TPost & {
+  total_backed: number; // Total amount backed, filled in
+  author: TUser; // Author details filled in
+  organization: TOrganization; // Organization details filled in
+  completion_requests?: TPostCompletionRequest[]; // Filled in completion requests
+};
+
+
 export type TPostWithAuthorAndOrg = TPost & {
   user: TUser;
   organization: TOrganization;

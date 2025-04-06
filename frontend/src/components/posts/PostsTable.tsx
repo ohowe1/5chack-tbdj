@@ -1,7 +1,7 @@
-import { TPost } from "../../../../shared/types/post";
+import { TPostFilled } from "../../../../shared/types/post";
 import PostCard from "./PostCard";
 
-function PostsTable({ posts }: { posts: TPost[] }) {
+function PostsTable({ posts }: { posts: TPostFilled[] }) {
   return (
       <div className="">
         {

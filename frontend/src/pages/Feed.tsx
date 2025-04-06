@@ -4,17 +4,17 @@ import { Link, Button } from "@heroui/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
-import { TPost } from "../../../shared/types/post";
+import { TPostFilled } from "../../../shared/types/post";
 
 function Feed() {
-  const [posts, setPosts] = useState<TPost[]>([]);
+  const [posts, setPosts] = useState<TPostFilled[]>([]);
 
   useEffect(() => {
     async function fetchPosts() {
       const response = await fetchAPI("posts/feed", "GET");
 
       if (response && Array.isArray(response)) {
-        setPosts(response as TPost[]);
+        setPosts(response as TPostFilled[]);
       } else {
         console.error("Failed to fetch posts data");
       }
