@@ -1,4 +1,4 @@
-import { PostCompletionRequests } from "models/completion.model";
+import { PostCompletionRequests } from "../models/completion.model";
 import mongoose, { QueryOptions } from "mongoose";
 import {
   POST_COMPLETION_REQUEST_STATUS,

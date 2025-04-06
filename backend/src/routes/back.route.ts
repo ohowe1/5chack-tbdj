@@ -5,7 +5,7 @@ import { Router, Request, Response } from "express";
 import { POST_BACKER_STATUS } from "shared/types/post";
 import { HydratedDocument } from "mongoose";
 import { TUser } from "shared/types/user";
-import { ensureAuthenticated } from "middleware/auth.middleware";
+import { ensureAuthenticated } from "../middleware/auth.middleware";
 const router = Router();
 
 router.use(ensureAuthenticated);
