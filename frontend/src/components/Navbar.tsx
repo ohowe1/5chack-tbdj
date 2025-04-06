@@ -2,10 +2,10 @@ import {
   Navbar, 
   NavbarBrand, 
   NavbarContent, 
-  Link} from "@heroui/react"
-import {
-  UserIcon,
-} from "@heroicons/react/24/outline";
+  Link, 
+  Button
+} from "@heroui/react"
+import {IconUser} from "@tabler/icons-react"
 import { useAuth } from '../context/AuthContext';
 
 
@@ -26,13 +26,18 @@ export default function NavBar() {
         className="sm:flex gap-4" 
         justify="end"
       >
-
+        <Button 
+          className='bg-white border-2 border-default-200'
+          isIconOnly
+          radius="full"
+          size="sm"
+        >
         <Link 
           href={user ? "/profile" : "/login"}
         >
-            <UserIcon className="size-5" />
+            <IconUser className="size-5" />
         </Link>
-          
+        </Button>
       </NavbarContent>
     </Navbar>
   )
