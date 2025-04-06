@@ -27,22 +27,35 @@ function Feed() {
 
   return (
     <DefaultLayout>
-      <div className="relative h-full">
-        <h1 className="text-2xl font-bold">Welcome to Bountee!</h1>
-        <p>Explore commissions to complete</p>
-        <PostsTable posts={posts} />
+      <div className="relative">
+        <div className='h-[80vh] overflow-scroll'>
+          <h1 className='text-2xl font-bold'>Welcome to Bountee!</h1>
+          <p>Explore commissions to complete</p>
 
-        <div className="absolute right-0 bottom-2">
-          <Link href="/create-post">
-            <Button
-              className="absolute right-0 bottom-2"
-              isIconOnly
-              radius="full"
-            >
-              <PlusIcon className="size-6" />
-            </Button>
-          </Link>
+          <div className='my-4'>
+            <PostsTable posts={posts} />
+
+          </div>
         </div>
+        
+        
+        
+
+        <div className='absolute right-0 bottom-2'>
+        <Link
+          href="/create-post"
+        >
+        <Button 
+          className='fixed right-2 bottom-2'
+          isIconOnly
+          radius="full"
+        >
+          <PlusIcon className="size-6" />
+        </Button>
+        </Link>
+        
+        </div>
+        
       </div>
     </DefaultLayout>
   );
