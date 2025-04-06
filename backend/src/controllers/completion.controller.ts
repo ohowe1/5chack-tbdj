@@ -36,8 +36,6 @@ export async function createCompletionRequest(
     status: POST_COMPLETION_REQUEST_STATUS.PENDING, // Pending
   });
 
-  // TODO: notify the post author about the new completion request
-
   return newRequest.save();
 }
 

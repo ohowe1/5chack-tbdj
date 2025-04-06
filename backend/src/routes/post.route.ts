@@ -16,9 +16,6 @@ router.use(ensureAuthenticated);
 
 router.get(
   "/feed",
-  // TODO: Add authentication middleware here
-  // TODO: make it so if a new post is made and the user wants the second page of what they thought was the feed, it will give them what they expect
-  // TODO: filters
   async (req: Request, res: Response) => {
     const user: HydratedDocument<TUser> = req.user as HydratedDocument<TUser>;
 
@@ -90,16 +87,6 @@ router.get("/:post_id", async (req: Request, res: Response) => {
   res.status(200).json(post);
 });
 
-/*
-TODO:
-- Create post
-- Back post
-- Complete post
-- Review compelteion requests
-- Cancel post
-- Update post
-*/
-
 router.post("/", async (req: Request, res: Response) => {
   const { title, description } = req.body;
   const user = req.user as HydratedDocument<TUser>;
@@ -150,8 +137,6 @@ router.put("/:post_id", async (req: Request, res: Response) => {
     post.description = description.trim();
   }
   if (status !== undefined) {
-    // TODO: do some logic with this
-
     // Ensure the status is a valid POST_STATUS
     if (Object.values(POST_STATUS).includes(status)) {
       post.status = status;
