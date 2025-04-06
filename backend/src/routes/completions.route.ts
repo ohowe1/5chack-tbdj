@@ -2,10 +2,10 @@ import {
   createCompletionRequest,
   getCompletionRequest,
   getCompletionRequestsByPost,
-} from "controllers/completion.controller";
-import { getPost } from "controllers/post.controller";
+} from "../controllers/completion.controller";
+import { getPost } from "../controllers/post.controller";
 import { Router } from "express";
-import { ensureAuthenticated } from "middleware/auth.middleware";
+import { ensureAuthenticated } from "../middleware/auth.middleware";
 import { HydratedDocument } from "mongoose";
 import { POST_COMPLETION_REQUEST_STATUS } from "shared/types/post";
 import { TUser } from "shared/types/user";
