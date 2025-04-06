@@ -1,5 +1,11 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+  --font-sans: Inter, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
