@@ -6,4 +6,5 @@ export type TUser = {
     displayName: string;
     googleId: string;
     organization: Types.ObjectId;
+    payoutEmail?: string; // Optional payout email for payment processing
 }
