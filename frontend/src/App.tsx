@@ -8,6 +8,7 @@ import CreatePost from './pages/CreatePost';
 import '@mantine/core/styles.css';
 
 import { createTheme, MantineProvider } from '@mantine/core';
+import { HeroUIProvider } from '@heroui/react';
 
 const theme = createTheme({
   /** Put your mantine theme override here */
