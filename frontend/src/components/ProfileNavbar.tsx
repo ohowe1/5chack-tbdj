@@ -7,10 +7,8 @@ import {
   IconLogout,
   IconReceipt2,
   IconSettings,
-  IconSwitchHorizontal,
   IconChevronLeft,
   IconChevronRight,
-  IconHome,
 } from "@tabler/icons-react";
 import { Code, Group, Anchor, Button } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";

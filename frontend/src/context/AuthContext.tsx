@@ -33,9 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const logout = async () => {
-    // If you add a logout route on the backend (for example, /auth/logout),
-    // call it here.
-    // For now, we just clear the context and redirect to the login page.
+    await fetchAPI("auth/logout", "POST");
     setUser(null);
     window.location.href = "/unlogged-home";
   };

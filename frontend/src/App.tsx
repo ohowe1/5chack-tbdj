@@ -16,7 +16,7 @@ import CompleteBounty from "./pages/CompleteBounty";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import "@mantine/core/styles.css";
-import FinishedBounteesPage from "./pages/FInishedBountees.tsx";
+import FinishedBounteesPage from "./pages/FinishedBountees.tsx";
 
 const theme = createTheme({
   /** Put your mantine theme override here */

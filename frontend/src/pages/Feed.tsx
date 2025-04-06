@@ -27,16 +27,16 @@ function Feed() {
       <div className="relative">
         <div className="h-[80vh] overflow-scroll">
           <h1 className="text-2xl font-bold">Welcome to Bountee!</h1>
-          <p>Explore posts to complete</p>
+          <p>Explore Bountees to complete</p>
 
           <div className="my-4">
-            <PostsTable error={"No open posts yet. Create one to get started!"} posts={pendingPosts.filter(post => post.status === POST_STATUS.OPEN)} />
+            <PostsTable error={"No open Bountees yet. Create one to get started!"} posts={pendingPosts.filter(post => post.status === POST_STATUS.OPEN)} />
           </div>
 
           <Divider />
-          <h2 className="my-4">Completed Posts</h2>
+          <h2 className="my-4">Completed Bountees</h2>
           <div>
-            <PostsTable error={"No completed posts yet."} posts={pendingPosts.filter(post => post.status === POST_STATUS.COMPLETED)} />
+            <PostsTable error={"No completed Bountees yet."} posts={pendingPosts.filter(post => post.status === POST_STATUS.COMPLETED)} />
           </div>
         </div>
 

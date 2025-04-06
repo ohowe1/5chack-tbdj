@@ -1,7 +1,7 @@
 import { TPostFilled } from "../../../../shared/types/post";
 import PostCard from "./PostCard";
 
-function PostsTable({ posts, error }: { posts: TPostFilled[], error: string }) {
+function PostsTable({ posts, error = "No Bountees Yet" }: { posts: TPostFilled[], error?: string }) {
   return (
       <div className="">
         {
