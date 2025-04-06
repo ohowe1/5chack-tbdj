@@ -39,7 +39,7 @@ export async function createCompletionRequest(
 }
 
 export async function getCompletionRequest(
-  requestId: string | mongoose.Types.ObjectId,
+  requestId: string | mongoose.Types.ObjectId
 ) {
   return populatePostAndApplyOptions(
     PostCompletionRequests.findById(requestId)
@@ -63,15 +63,17 @@ export async function getCompletionRequestsByUser(
 }
 
 export async function getCompletionRequestsByPostAuthor(
-  authorId: string | mongoose.Types.ObjectId
+  authorId: string | mongoose.Types.ObjectId,
+  options: QueryOptions = {}
 ) {
+  const posts = await mongoose.model('Post').find({ author: authorId }).select('_id');
+  const postIds = posts.map(post => post._id);
+
   return populatePostAndApplyOptions(
-    PostCompletionRequests.find({
-      status: POST_COMPLETION_REQUEST_STATUS.PENDING,
-    })
-  )
-    .populate("post")
-    .populate("requester")
-    .where("post.author")
-    .equals(authorId);
+    PostCompletionRequests.find({ 
+      post: { $in: postIds }, 
+      status: { $eq: POST_COMPLETION_REQUEST_STATUS.PENDING } 
+    }),
+    options
+  );
 }

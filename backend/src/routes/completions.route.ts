@@ -2,6 +2,7 @@ import {
   createCompletionRequest,
   getCompletionRequest,
   getCompletionRequestsByPost,
+  getCompletionRequestsByPostAuthor,
 } from "../controllers/completion.controller";
 import { getPost } from "../controllers/post.controller";
 import { Router } from "express";
@@ -84,6 +85,18 @@ router.post("/:completion_id/gavel", async (req, res) => {
   }
 
   await completionRequest.save();
+});
+
+router.get("/to_review", async (req, res) => {
+  const user = req.user as HydratedDocument<TUser>;
+  const completionRequests = await getCompletionRequestsByPostAuthor(user._id);
+  console.log("Fetched completion requests for review:", completionRequests);
+
+  if (!completionRequests || completionRequests.length === 0) {
+    res.status(200).json([]);
+    return;
+  }
+  res.status(200).json(completionRequests);
 });
 
 export default router;

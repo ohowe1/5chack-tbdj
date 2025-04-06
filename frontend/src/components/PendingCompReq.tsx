@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Alert, Card, Text, Group, Button, Avatar, Badge, Stack } from "@mantine/core"
+import { Alert, Card, Text, Group, Button, Avatar, Stack } from "@mantine/core"
 import { IconChevronDown, IconInfoCircle, IconX } from "@tabler/icons-react"
 import classes from "./css/PendingCompReq.module.css"
 import type { TPostCompletionRequestFilled } from "shared/types/post"
@@ -78,16 +78,16 @@ export function PendingCompletionRequest({ completionRequest }: { completionRequ
           <div>
             <Text fw={500}>Completion Details:</Text>
             <Text size="sm" mt="xs">
-              {completionRequest.post.description}
+              {completionRequest.comment || "No additional comments provided."}
             </Text>
           </div>
         )}
 
         <Group justify="flex-end" mt="md">
           <Button variant="outline" color="red">
-            Reject
+            Decline
           </Button>
-          <Button color="green">Approve</Button>
+          <Button color="green">Accept</Button>
         </Group>
       </Stack>
     </Card>

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Textarea, Checkbox } from "@mantine/core";
 import { Button} from "@heroui/react";
 import { fetchAPI } from "../utils/api";
-import { TPostFilled, POST_STATUS, TPostCompletionRequestFilled } from "shared/types/post";
+import { TPostCompletionRequestFilled } from "shared/types/post";
 
 
 function CompleteBounty() {
@@ -12,7 +12,6 @@ function CompleteBounty() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("wassup losers")
     const data = new FormData(e.currentTarget);
 
     const newCompletion = (await fetchAPI(`completions`, "POST", {

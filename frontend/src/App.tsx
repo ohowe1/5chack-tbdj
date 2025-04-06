@@ -28,13 +28,6 @@ function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
-        <Route path="/post/:id" element={<PostDetails />} />
-        <Route path="/profile/notifications" element={<NotificationsPage />} />
-        <Route path="/profile/outgoing" element={<OutgoingBounteesPage />} />
-        <Route path="/profile/incoming" element={<IncomingBounteesPage />} />
-        <Route path="/profile/billing" element={<BillingPage />} />
-        <Route path="/profile/settings" element={<SettingsPage />} />
-        <Route path="/create-post" element={<CreatePost />} />
 
         {/* Protected routes using Outlet pattern */}
         <Route element={<ProtectedRoute />}>
@@ -45,6 +38,13 @@ function App() {
           <Route path="/edit-post/:id" element={<EditPost />} />
           <Route path="/back-bounty/:id" element={<BackBounty />} />
           <Route path="/complete-bounty/:id" element={<CompleteBounty />} />
+        <Route path="/post/:id" element={<PostDetails />} />
+        <Route path="/profile/notifications" element={<NotificationsPage />} />
+        <Route path="/profile/outgoing" element={<OutgoingBounteesPage />} />
+        <Route path="/profile/incoming" element={<IncomingBounteesPage />} />
+        <Route path="/profile/billing" element={<BillingPage />} />
+        <Route path="/profile/settings" element={<SettingsPage />} />
+        <Route path="/create-post" element={<CreatePost />} />
         </Route>
       </Routes>
     </MantineProvider>

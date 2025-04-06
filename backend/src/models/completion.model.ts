@@ -22,6 +22,10 @@ export const PostCompletionRequest = new Schema<TPostCompletionRequest>({
     required: true,
     default: 0, // 0 = pending, 1 = approved, 2 = rejected
   },
+  comment: {
+    type: String,
+    trim: true,
+  },
 });
 
 export const PostCompletionRequests = mongoose.model<TPostCompletionRequest>(

@@ -53,6 +53,7 @@ export enum POST_COMPLETION_REQUEST_STATUS {
 }
 
 export type TPostCompletionRequest = {
+  _id: Types.ObjectId; // Completion request ID
   post: Types.ObjectId; // The post being completed
   requester: Types.ObjectId; // The user requesting the completion
   comment?: string; // Optional reason for the completion request
