@@ -79,7 +79,7 @@ export async function getCompletionRequestsByPostAuthor(
     PostCompletionRequests.find({
       post: { $in: postIds },
       status: { $eq: POST_COMPLETION_REQUEST_STATUS.PENDING },
-    }).sort({ createdAt: -1 }),
+    }).sort({ requested_at: -1 }),
     options
   );
 }
@@ -122,8 +122,7 @@ export async function approveCompletionRequest(
     {
       recipient_type: "EMAIL",
       amount: { value: totalBacked.toFixed(2), currency: "USD" },
-      receiver: "sb-mqxf439683011@personal.example.com",
-      // receiver: emailToSendItTo,
+      receiver: emailToSendItTo,
       note: `Payment for completion of post "${post.title}"`,
       recipient_wallet: "PayPal", // or "Venmo" if you want to specify
     },

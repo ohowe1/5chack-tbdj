@@ -1,7 +1,7 @@
 import { TPostFilled } from "../../../../shared/types/post";
 import PostCard from "./PostCard";
 
-function PostsTable({ posts }: { posts: TPostFilled[] }) {
+function PostsTable({ posts, error }: { posts: TPostFilled[], error: string }) {
   return (
       <div className="">
         {
@@ -10,7 +10,7 @@ function PostsTable({ posts }: { posts: TPostFilled[] }) {
                 <PostCard post={post} key={post._id.toString()} />
             ))
           ) : (
-            <p className="text-center text-gray-500">No posts available.</p>
+            <p className="text-center text-gray-500">{ error }</p>
           )
         }
       </div>

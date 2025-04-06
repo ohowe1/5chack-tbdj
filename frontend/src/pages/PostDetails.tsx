@@ -1,14 +1,11 @@
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
-import { Button, Link } from '@heroui/react';
-import { IconEdit} from "@tabler/icons-react";
+import { Button, Link } from "@heroui/react";
+import { IconEdit } from "@tabler/icons-react";
 import { TPostFilled } from "shared/types/post";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
-import { useAuth } from '../context/AuthContext';
-
-
-
+import { useAuth } from "../context/AuthContext";
 
 function PostDetails() {
   const { id } = useParams();
@@ -52,31 +49,27 @@ function PostDetails() {
               null
             }
           </div> */}
-        
-          <div className='flex flex-row justify-between items-center'>
-            <div className='flex flex-row gap-4 items-center'>
-              <h1 className="text-3xl font-bold">{postData?.title}</h1>
-              {
-              user?._id == postData?.author._id ? 
-              <Button 
-                className='bg-default' 
-                startContent={<IconEdit className='size-4'/>}
-                isIconOnly
-                radius="full"
-                size="sm"
-                as={Link}
-                href={`/edit-post/${postData?._id}`}
-              >
-                
-              </Button> :
-              null
-            }
-            </div>
-            <h1 className="text-3xl font-bold text-[#4db7c5]">$ {postData?.total_backed}</h1>
-            
 
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row gap-4 items-center">
+              <h1 className="text-3xl font-bold">{postData?.title}</h1>
+              {user?._id == postData?.author._id ? (
+                <Button
+                  className="bg-default"
+                  startContent={<IconEdit className="size-4" />}
+                  isIconOnly
+                  radius="full"
+                  size="sm"
+                  as={Link}
+                  href={`/edit-post/${postData?._id}`}
+                ></Button>
+              ) : null}
+            </div>
+            <h1 className="text-3xl font-bold text-[#4db7c5]">
+              $ {postData?.total_backed}
+            </h1>
           </div>
-          
+
           <div className="flex items-center gap-2 text-gray-500 mt-1">
             <span className="font-medium">{postData?.author.displayName}</span>
             <span className="text-gray-400">•</span>
@@ -94,24 +87,28 @@ function PostDetails() {
 
         <p className="break-all">{postData?.description}</p>
 
-        <div className='flex flex-row justify-center items-center gap-2'>
-          <Button
-          className='mt-8'
-          as={Link}
-          href={`/back-bounty/${id}`}
-          >
-            Back Bounty
-          </Button>
-          <Button
-          as={Link}
-          href={`/complete-bounty/${postData?._id}`}
-          className='mt-8 bg-emerald-400'
-          >
-            Claim Bounty
-          </Button>
-        </div>
-
-       
+        {postData?.status === 1 ? (
+          <div className="mt-8 text-green-800 font-bold">
+            This bounty has been completed and is no longer accepting backers.
+          </div>
+        ) : postData?.status === 2 ? (
+          <div className="mt-8 text-red-500 font-bold">
+            This bounty has been canceled and is no longer accepting backers.
+          </div>
+        ) : (
+          <div className="flex flex-row justify-center items-center gap-2">
+            <Button className="mt-8" as={Link} href={`/back-bounty/${id}`}>
+              Back Bounty
+            </Button>
+            <Button
+              as={Link}
+              href={`/complete-bounty/${postData?._id}`}
+              className="mt-8 bg-emerald-400"
+            >
+              Claim Bounty
+            </Button>
+          </div>
+        )}
       </div>
     </DefaultLayout>
   );
