@@ -6,8 +6,7 @@ import { TPostFilled } from "shared/types/post";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
 import { useAuth } from '../context/AuthContext';
-
-
+import { Box } from '@mantine/core';
 
 
 function PostDetails() {
@@ -36,23 +35,6 @@ function PostDetails() {
     <DefaultLayout>
       <div className="flex flex-col my-4">
         <div className="my-2">
-          {/* <div className="flex flex-row justify-end	">
-          {
-              user?._id == postData?.author._id ? 
-              <Button 
-                className='bg-[#67c2ce]' 
-                startContent={<PencilIcon className='size-5'/>}
-                isIconOnly
-                radius="full"
-                as={Link}
-                href={`/edit-post/${postData?._id}`}
-              >
-                
-              </Button> :
-              null
-            }
-          </div> */}
-        
           <div className='flex flex-row justify-between items-center'>
             <div className='flex flex-row gap-4 items-center'>
               <h1 className="text-3xl font-bold">{postData?.title}</h1>
@@ -93,6 +75,22 @@ function PostDetails() {
         </div>
 
         <p className="break-all">{postData?.description}</p>
+        {/* Section to display commission details */}
+        {postData?.commission_backers && postData.commission_backers.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-xl font-bold text-[#4db7c5]">Trade Details</h2>
+            <ul className="list-disc pl-5">
+              {postData.commission_backers.map((backer, index) => (
+              <Box>
+                <p>
+                    <span className="font-medium">Barter:</span>{" "}
+                    {backer.commission}
+                  </p>
+              </Box>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className='flex flex-row justify-center items-center gap-2'>
           <Button

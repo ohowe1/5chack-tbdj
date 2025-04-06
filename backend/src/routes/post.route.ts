@@ -5,7 +5,7 @@ import {
 } from "../controllers/post.controller";
 import { Router, Request, Response } from "express";
 import { ensureAuthenticated } from "../middleware/auth.middleware";
-import { POST_STATUS } from "shared/types/post";
+import { POST_STATUS, POST_BACKER_STATUS } from "shared/types/post";
 import { HydratedDocument } from "mongoose";
 import { TUser } from "shared/types/user";
 
@@ -146,5 +146,38 @@ router.put("/:post_id", async (req: Request, res: Response) => {
   await post.save();
   res.status(200).json(post);
 });
+
+// for commission backers
+// Route to back a post with a commission
+router.post("/commission/:post_id", async (req: Request, res: Response) => {
+  const user = req.user as HydratedDocument<TUser>;
+  const post_id = req.params.post_id;
+  const { commission } = req.body;
+
+  if (!post_id || !commission) {
+    res.status(400).json({ error: "Post ID and commission are required" });
+    return;
+  }
+
+  const post = await getPost(post_id, user.organization);
+  if (!post) {
+    res.status(404).json({ error: "Post not found" });
+    return;
+  }
+
+  // Add the commission backer to the post
+  const commissionBacker = {
+    user: user._id,
+    commission: commission.trim(),
+    back_date: new Date(),
+    status: POST_BACKER_STATUS.PENDING, // Assuming 0 means pending
+  };
+  post.commission_backers.push(commissionBacker);
+
+  await post.save();
+
+  res.status(200).json({ message: "Commission added successfully", post });
+});
+
 
 export default router;

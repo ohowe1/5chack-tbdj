@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { TPostBacker, TPost } from "shared/types/post";
+import { TPostBacker, TPost, TPostCommissionBacker } from "shared/types/post";
 
 export const PostBacker = new mongoose.Schema<TPostBacker>({
   user: {
@@ -16,12 +16,27 @@ export const PostBacker = new mongoose.Schema<TPostBacker>({
   }
 });
 
+export const CommissionBacker = new mongoose.Schema<TPostCommissionBacker>({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  commission: { type: String, required: true, min: 0 },
+  back_date: { type: Date, default: Date.now },
+  status: { type: Number, required: true, default: 0 },
+});
+
 export const Post = new mongoose.Schema<TPost>(
   {
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
     backers: {
       type: [PostBacker],
+      default: [],
+    },
+    commission_backers: {
+      type: [CommissionBacker],
       default: [],
     },
     total_backed: {
