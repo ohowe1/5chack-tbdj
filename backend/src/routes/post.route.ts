@@ -34,6 +34,28 @@ router.get(
   }
 );
 
+router.get(
+  "/feed/self",
+
+  async (req: Request, res: Response) => {
+    const user: HydratedDocument<TUser> = req.user as HydratedDocument<TUser>;
+
+    const postsInOrg = await getPostsByOrganization(user.organization, {
+      sort: { created_at: -1 }, // Sort by newest first
+      filter: { 
+        status: { $ne: POST_STATUS.CANCELED },
+        author: user._id 
+      }, // posts not by author?
+    });
+
+    if (!postsInOrg) {
+      res.status(200).json([]);
+      return;
+    }
+    res.status(200).json(postsInOrg);
+  }
+);
+
 router.get("/:post_id", async (req: Request, res: Response) => {
   const reqUser = req.user as HydratedDocument<TUser>;
   const post_id = req.params.post_id;
