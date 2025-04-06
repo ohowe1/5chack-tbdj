@@ -15,7 +15,7 @@ export default function PostCard({ post }: { post: TPost }) {
               <h3 className="text-gray-500 text-sm">Author Ex. | 4/5/25</h3>
             </div>
             <div>
-              <h3 className="font-bold text-sm">$${post.total_backed}</h3>
+              <h3 className="font-bold text-sm">${post.total_backed}</h3>
             </div>
           </div>
         </CardBody>
