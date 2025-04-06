@@ -9,6 +9,9 @@ function populatePostAndApplyOptions(
 ) {
   let q = query.populate("author").populate("organization");
 
+  if (options.filter) {
+    q = q.find(options.filter);
+  }
   if (options.fields) {
     q = q.select(options.fields);
   }
