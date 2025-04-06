@@ -17,6 +17,9 @@ router.post("/:post_id", async (req: Request, res: Response) => {
     return;
   }
 
+  console.log(post_id);
+  console.log(user)
+
   const post = await getPost(post_id);
   if (!post) {
     res.status(404).json({ error: "Post not found" });
