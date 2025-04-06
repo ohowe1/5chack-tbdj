@@ -1,6 +1,7 @@
 import {
   createPost,
   getPost,
+  getPostsByCompletingUser,
   getPostsByOrganization,
 } from "../controllers/post.controller";
 import { Router, Request, Response } from "express";
@@ -36,15 +37,14 @@ router.get(
 
 router.get(
   "/feed/self",
-
   async (req: Request, res: Response) => {
     const user: HydratedDocument<TUser> = req.user as HydratedDocument<TUser>;
 
     const postsInOrg = await getPostsByOrganization(user.organization, {
       sort: { created_at: -1 }, // Sort by newest first
-      filter: { 
+      filter: {
         status: { $ne: POST_STATUS.CANCELED },
-        author: user._id 
+        author: user._id,
       }, // posts not by author?
     });
 
@@ -55,6 +55,23 @@ router.get(
     res.status(200).json(postsInOrg);
   }
 );
+
+router.get("/feed/other-self", async (req: Request, res: Response) => {
+  const user: HydratedDocument<TUser> = req.user as HydratedDocument<TUser>;
+
+  const postsToUse = await getPostsByCompletingUser(user._id, {
+    sort: { created_at: -1 }, // Sort by newest first
+    filter: {
+      status: { $ne: POST_STATUS.CANCELED }, // Exclude canceled posts
+    },
+  });
+
+  if (!postsToUse) {
+    res.status(200).json([]);
+    return;
+  }
+  res.status(200).json(postsToUse);
+});
 
 router.get("/:post_id", async (req: Request, res: Response) => {
   const reqUser = req.user as HydratedDocument<TUser>;
@@ -118,7 +135,7 @@ router.put("/:post_id", async (req: Request, res: Response) => {
     return;
   }
 
-  if (!(post.author._id).equals(user._id)) {
+  if (!post.author._id.equals(user._id)) {
     res
       .status(403)
       .json({ error: "You are not authorized to update this post" });

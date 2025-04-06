@@ -2,6 +2,7 @@ import { Posts } from "../models/post.model";
 import mongoose, { HydratedDocument } from "mongoose";
 import { TPost } from "shared/types/post";
 import { QueryOptions } from "./controller";
+import { PostCompletionRequests } from "../models/completion.model";
 
 function populatePostAndApplyOptions(
   query: mongoose.Query<any[], any, any, TPost>,
@@ -26,7 +27,10 @@ export async function getPosts() {
   return populatePostAndApplyOptions(Posts.find());
 }
 
-export async function getPost(post_id: string | mongoose.Types.ObjectId, organization_id?: string | mongoose.Types.ObjectId) {
+export async function getPost(
+  post_id: string | mongoose.Types.ObjectId,
+  organization_id?: string | mongoose.Types.ObjectId
+) {
   if (organization_id) {
     return populatePostAndApplyOptions(
       Posts.findOne({ _id: post_id, organization: organization_id })
@@ -41,6 +45,25 @@ export async function getPostsByOrganization(
 ) {
   return populatePostAndApplyOptions(
     Posts.find({ organization: organization_id }),
+    options
+  );
+}
+
+export async function getPostsByCompletingUser(
+  user_id: string | mongoose.Types.ObjectId,
+  options: QueryOptions = {}
+) {
+  // First find all completion requests made by this user
+  const completionRequests = await PostCompletionRequests.find({
+    requester: user_id
+  });
+  
+  // Extract the post IDs from these completion requests
+  const postIds = completionRequests.map(request => request.post);
+  
+  // Now find all posts with these IDs
+  return populatePostAndApplyOptions(
+    Posts.find({ _id: { $in: postIds } }),
     options
   );
 }

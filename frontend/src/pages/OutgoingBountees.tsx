@@ -26,7 +26,7 @@ export default function OutgoingBounteesPage() {
       <Box>
         <ProfileLayout>
         <h1 className="font-bold text-xl mb-1">Outgoing Bountees</h1>
-        <p className="mb-6 font text-sm">Manage your outgoing bountees here.</p>
+        <p className="mb-6 font text-sm">Manage your posted Bountees here.</p>
         <div className='my-4'>
             <PostsTable posts={posts} />
 

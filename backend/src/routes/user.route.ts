@@ -40,7 +40,7 @@ router.post("/update-email", async (req, res) => {
 
   res
     .status(200)
-    .json({ message: "Email updated successfully", email: user.payoutEmail });
+    .json(user);
 });
 
 export default router;
