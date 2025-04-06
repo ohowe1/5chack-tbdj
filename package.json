@@ -8,6 +8,13 @@
     "backend",
     "shared"
   ],
+  "scripts": {
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up --always-recreate-deps --wait",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "docker:restart": "docker compose restart"
+  },
   "license": "UNLICENSED",
   "packageManager": "yarn@4.8.1"
 }

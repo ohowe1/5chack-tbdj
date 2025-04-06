@@ -1,14 +1,73 @@
-version: "3.8"
 services:
-  mongo:
-    image: mongo:6.0
-    container_name: mongo-container
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  base:
+    image: 5chack-tbdj-dev-base
+    build:
+      context: .
+      dockerfile: base.dockerfile
     volumes:
-      - mongo-data:/data/db
+      - node_modules:/srv/5chack-tbdj/node_modules
+      - .yarn:/srv/5chack-tbdj/.yarn
+      - ./.yarnrc.yml:/srv/5chack-tbdj/.yarnrc.yml:ro
+      - ./yarn.lock:/srv/5chack-tbdj/yarn.lock:ro
+      - ./package.json:/srv/5chack-tbdj/package.json:ro
+      - ./frontend/package.json:/srv/5chack-tbdj/frontend/package.json:ro
+      - ./backend/package.json:/srv/5chack-tbdj/backend/package.json:ro
+      - ./shared/package.json:/srv/5chack-tbdj/shared/package.json:ro
+    command: yarn install --immutable
+  db:
+    image: mongo:7
+    networks:
+      - backend
+    expose:
+      - 27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 5chack-tbdj
+      MONGO_INITDB_ROOT_PASSWORD: local_dev
+    volumes:
+      - db-data:/data/db
+  frontend:
+    image: 5chack-tbdj-dev-base
+    depends_on: &base
+      base:
+        condition: service_completed_successfully
+    ports:
+      - 3000:3000
+    volumes:
+      - node_modules:/srv/5chack-tbdj/node_modules
+      - .yarn:/srv/5chack-tbdj/.yarn
+      - ./.yarnrc.yml:/srv/5chack-tbdj/.yarnrc.yml:ro
+      - ./yarn.lock:/srv/5chack-tbdj/yarn.lock:ro
+      - ./frontend:/srv/5chack-tbdj/frontend
+      - ./shared:/srv/5chack-tbdj/shared:ro
+      - ./package.json:/srv/5chack-tbdj/package.json:ro
+    working_dir: /srv/5chack-tbdj/frontend
+    command: yarn dev
+  backend:
+    image: 5chack-tbdj-dev-base
+    depends_on:
+      <<: *base
+      db:
+        condition: service_started
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    volumes:
+      - node_modules:/srv/5chack-tbdj/node_modules
+      - .yarn:/srv/5chack-tbdj/.yarn
+      - ./.yarnrc.yml:/srv/5chack-tbdj/.yarnrc.yml:ro
+      - ./yarn.lock:/srv/5chack-tbdj/yarn.lock:ro
+      - ./backend:/srv/5chack-tbdj/backend:ro
+      - ./shared:/srv/5chack-tbdj/shared:ro
+      - ./package.json:/srv/5chack-tbdj/package.json:ro
+    working_dir: /srv/5chack-tbdj/backend
+    command: yarn dev
+    environment:
+      MONGO_URI: mongodb://5chack-tbdj:local_dev@db
+
+networks:
+    backend:
+
 volumes:
-  mongo-data:
+    node_modules:
+    db-data:
