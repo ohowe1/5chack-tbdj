@@ -21,7 +21,6 @@ const data = [
   { link: "/profile/notifications", label: "Notifications", icon: IconBellRinging },
   { link: "/profile/outgoing", label: "Outgoing Bountees", icon: IconAd2 },
   { link: "/profile/finished", label: "Finished Bountees", icon: IconAlbum },
-  { link: "/profile/billing", label: "Billing", icon: IconReceipt2 },
   { link: "/profile/settings", label: "Settings", icon: IconSettings },
 ];
 
