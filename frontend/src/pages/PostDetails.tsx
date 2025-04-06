@@ -38,7 +38,7 @@ function PostDetails() {
 
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row gap-4 items-center">
-              <h1 className="text-3xl font-bold">{postData?.title}</h1>
+              <h1 className="text-xl font-bold">{postData?.title}</h1>
               {user?._id == postData?.author._id ? (
                 <Button
                   className="bg-default"
@@ -51,8 +51,8 @@ function PostDetails() {
                 ></Button>
               ) : null}
             </div>
-            <h1 className="text-3xl font-bold text-[#4db7c5]">
-              $ {postData?.total_backed}
+            <h1 className="text-3xl font-bold text-[#4db7c5] min-w-24 text-right">
+              ${postData?.total_backed}
             </h1>
           </div>
 
