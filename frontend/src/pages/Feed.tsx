@@ -1,7 +1,7 @@
 import DefaultLayout from "../components/DefaultLayout";
 import PostsTable from "../components/posts/PostsTable";
 import { Link, Button } from "@heroui/react";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import {IconPlus} from "@tabler/icons-react"
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
 import { TPostFilled } from "../../../shared/types/post";
@@ -47,7 +47,7 @@ function Feed() {
           isIconOnly
           radius="full"
         >
-          <PlusIcon className="size-6" />
+          <IconPlus className="size-6" />
         </Button>
         </Link>
         
