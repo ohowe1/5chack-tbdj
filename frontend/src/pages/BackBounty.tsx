@@ -40,7 +40,7 @@ function BackBounty() {
     e.preventDefault()
 
     const data = new FormData(e.currentTarget)
-    await fetchAPI(`back/${id}/commission`, "POST", {
+    await fetchAPI(`posts/commission/${id}`, "POST", {
       commission: data.get("commission") as string,
     })
     navigate("/")

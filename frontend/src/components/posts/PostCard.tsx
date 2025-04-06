@@ -2,6 +2,9 @@ import type { TPostFilled } from "../../../../shared/types/post";
 import { Card, CardBody, Link } from "@heroui/react";
 
 export default function PostCard({ post }: { post: TPostFilled }) {
+  const hasCommission = post.commission_backers.some(
+    (backer) => backer.commission && backer.commission.trim() !== ""
+  );
   return (
     <Link
       href={`/post/${post._id}`} // replace with post.uuid
@@ -27,7 +30,14 @@ export default function PostCard({ post }: { post: TPostFilled }) {
               </h3>
             </div>
             <div>
-              <h3 className="font-bold text-sm text-[#4db7c5]">${post.total_backed}</h3>
+              {/* Check if the post has monetary backing */}
+              {hasCommission ? (
+                <h3 className="font-bold text-sm text-[#4db7c5]">Bountee Trade</h3>
+              ) : (
+                <h3 className="font-bold text-sm text-[#4db7c5]">
+                  ${post.total_backed}
+                </h3>
+              )}
             </div>
           </div>
         </CardBody>

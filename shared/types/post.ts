@@ -22,6 +22,14 @@ export type TPostBacker = {
   order_id?: string; // Optional order ID for payment confirmation
 }
 
+export type TPostCommissionBacker = {
+  _id: Types.ObjectId; // Backer ID
+  user: Types.ObjectId; // User who backed the post
+  commission: string;
+  back_date: Date; // Date when the backing was made
+  status: POST_BACKER_STATUS,
+}
+
 export type TPost = {
   _id: Types.ObjectId; // Post ID
   title: string;
@@ -29,6 +37,7 @@ export type TPost = {
   author: Types.ObjectId; // User
   total_backed?: number; // Total amount backed, calculated from backers
   backers: TPostBacker[]; // Array of backers
+  commission_backers: TPostCommissionBacker[]; // Array of commission backers
   organization: Types.ObjectId; // Organization
   status: POST_STATUS
   created_at: Date;
@@ -37,6 +46,7 @@ export type TPost = {
 
 export type TPostFilled = TPost & {
   total_backed: number; // Total amount backed, filled in
+  commission_backer: TPostCommissionBacker[]; // Commission backers filled in
   author: TUser; // Author details filled in
   organization: TOrganization; // Organization details filled in
   completion_requests?: TPostCompletionRequest[]; // Filled in completion requests
