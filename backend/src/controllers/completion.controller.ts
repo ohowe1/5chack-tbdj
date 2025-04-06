@@ -73,7 +73,7 @@ export async function getCompletionRequestsByPostAuthor(
     PostCompletionRequests.find({ 
       post: { $in: postIds }, 
       status: { $eq: POST_COMPLETION_REQUEST_STATUS.PENDING } 
-    }),
+    }).sort({ createdAt: -1 }),
     options
   );
 }

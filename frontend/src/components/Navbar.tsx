@@ -1,33 +1,24 @@
-import React from "react"
 import {
   Navbar, 
   NavbarBrand, 
   NavbarContent, 
-  NavbarItem, 
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-  Link,
-  Button
-} from "@heroui/react"
+  Link} from "@heroui/react"
 import {
-  HomeIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
-import { useState, useEffect } from "react"
 import { useAuth } from '../context/AuthContext';
 
 
 export default function NavBar() {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Navbar className="w-full bg-white px-2 py-2" height="3rem">
       <NavbarContent justify="start">
         <NavbarBrand>
-          <Link href="/">
-            Home
-          </Link>
+            <Link href="/" className="flex items-center">
+            <img src="/bountee.svg" alt="Logo" className="h-8" />
+            </Link>
         </NavbarBrand>
       </NavbarContent>
       

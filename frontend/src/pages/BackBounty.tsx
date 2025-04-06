@@ -2,7 +2,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import {
   NumberInput,
 } from "@mantine/core";
-import { Button, Link } from "@heroui/react";
+import { Link } from "@heroui/react";
 import { fetchAPI } from "../utils/api";
 import { useParams, useNavigate } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";

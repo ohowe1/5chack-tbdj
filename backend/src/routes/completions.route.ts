@@ -79,7 +79,6 @@ router.post("/:completion_id/gavel", async (req, res) => {
   }
 
   if (decision === "approve") {
-    // todo handle payment
     completionRequest.status = POST_COMPLETION_REQUEST_STATUS.APPROVED; // Update the status to approved
   } else if (decision === "decline") {
     completionRequest.status = POST_COMPLETION_REQUEST_STATUS.DENIED; // Update the status to denied
