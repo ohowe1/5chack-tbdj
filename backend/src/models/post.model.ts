@@ -14,7 +14,6 @@ export const PostBacker = new mongoose.Schema<TPostBacker>({
 
 export const Post = new mongoose.Schema<TPost>(
   {
-    uuid: { type: String, required: true, unique: true },
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
     backers: {

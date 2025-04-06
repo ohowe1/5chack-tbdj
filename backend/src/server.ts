@@ -14,6 +14,8 @@ const app: Application = express();
 const logger = pino();
 logger.level = "debug";
 
+connectDB(logger);
+
 // Middleware for sessions
 app.use(
   session({
@@ -48,15 +50,15 @@ app.use('/posts', postRoutes)
 // Google OAuth Routes
 app.get(
   '/auth/google',
-  auth.authenticate('google', { scope: ['profile'] })
+  auth.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 app.get(
   '/auth/google/callback',
-  auth.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    res.redirect('/profile'); // Redirect to a profile page after successful login
-  }
+  auth.authenticate('google', {
+     failureRedirect: 'http://localhost:' + (process.env.FRONTEND_PORT || 3000) + '/login', // Redirect to login page on failure
+     successRedirect: 'http://localhost:' + (process.env.FRONTEND_PORT || 3000) + '/', // Redirect to profile page on success
+  }),
 );
 
 // Protected Route

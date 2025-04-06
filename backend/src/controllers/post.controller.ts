@@ -1,5 +1,5 @@
-import { Posts } from "models/post.model";
-import mongoose from "mongoose";
+import { Posts } from "../models/post.model";
+import mongoose, { HydratedDocument } from "mongoose";
 import { TPost } from "shared/types/post";
 
 export interface Options {
@@ -28,29 +28,21 @@ export async function getPosts() {
   return populatePostAndApplyOptions(Posts.find());
 }
 
-export async function getPost(post_uuid: string) {
+export async function getPost(post_uuid: string | mongoose.Types.ObjectId) {
   return populatePostAndApplyOptions(Posts.findOne({ uuid: post_uuid }));
 }
 
 export async function getPostsByOrganization(
-  organization_uuid: string,
+  organization_id: string | mongoose.Types.ObjectId,
   options: Options = {}
 ) {
   return populatePostAndApplyOptions(
-    Posts.find({ organization: organization_uuid }),
+    Posts.find({ organization: organization_id }),
     options
   );
 }
 
 export async function createPost(post_obj: any) {
-  const existingPost = await Posts.exists({
-    uuid: post_obj.uuid,
-  });
-
-  if (existingPost) {
-    return null;
-  }
-
   const newPost = new Posts(post_obj);
   return newPost.save();
 }

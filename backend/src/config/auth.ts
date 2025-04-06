@@ -1,8 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import mongoose from 'mongoose';
-import { User } from '../models/user.model';
-import { getOrCreateUser } from 'controllers/user.controller';
+import { getOrCreateUser, getUserById } from '../controllers/user.controller';
 
 // Configure passport strategies
 passport.use(new GoogleStrategy({
@@ -13,7 +11,7 @@ passport.use(new GoogleStrategy({
   async (accessToken, refreshToken, profile, done) => {
     try {
       // Find or create user logic
-      let user = getOrCreateUser(profile.id, profile.displayName, profile.emails?.[0]?.value!);
+      let user = await getOrCreateUser(profile.id, profile.displayName, profile.emails?.[0]?.value!);
       
       return done(null, user);
     } catch (error) {
@@ -24,13 +22,12 @@ passport.use(new GoogleStrategy({
 
 // Serialize and deserialize user
 passport.serializeUser((user: any, done) => {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(async (id: string, done) => {
   try {
-    const Users = mongoose.model("User", User);
-    const user = await Users.findById(id);
+    const user = await getUserById(id);
     done(null, user);
   } catch (error) {
     done(error, null);

@@ -1,5 +1,5 @@
-import { Users } from "models/user.model";
-import mongoose from "mongoose";
+import { getHMCOrganization } from "../models/organization.model";
+import { Users } from "../models/user.model";
 
 export async function getOrCreateUser(id: string, displayName: string, email: string) {
   let user = await Users.findOne({ googleId: id });
@@ -9,6 +9,7 @@ export async function getOrCreateUser(id: string, displayName: string, email: st
       googleId: id,
       displayName: displayName,
       email: email,
+      organization: await getHMCOrganization()
     });
     await user.save();
   } else {
@@ -19,4 +20,8 @@ export async function getOrCreateUser(id: string, displayName: string, email: st
   }
 
   return user;
+}
+
+export async function getUserById(userId: string) {
+  return Users.findById(userId);
 }
