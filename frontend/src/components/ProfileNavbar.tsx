@@ -10,6 +10,7 @@ import {
   IconSwitchHorizontal,
   IconChevronLeft,
   IconChevronRight,
+  IconHome,
 } from "@tabler/icons-react";
 import { Code, Group, Anchor, Button } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
@@ -71,12 +72,10 @@ export function ProfileNavBar() {
   ));
 
   const footerLinks = [
-    { link: "/profile/switch-account", label: "Change account", icon: IconSwitchHorizontal },
     { label: "Logout", icon: IconLogout },
   ].map((item) => (
     <a
       className={`${classes.link} ${collapsed ? classes.collapsedLink : ""}`}
-      href={item.link}
       key={item.label}
       onClick={(event) => {
         event.preventDefault();
@@ -94,14 +93,23 @@ export function ProfileNavBar() {
         <Group className={classes.header} justify="space-between">
           {!collapsed && <Anchor href="/">Bountee!</Anchor>}
           {!collapsed && <Code fw={700}>v0.0.0</Code>}
-          <Button
+          {!collapsed ? <Button
             variant="subtle"
             size="xs"
             onClick={() => setCollapsed(!collapsed)}
             className={classes.collapseButton}
           >
             {collapsed ? <IconChevronRight size={16} /> : <IconChevronLeft size={16} />}
-          </Button>
+          </Button> :
+          <Button
+          variant="subtle"
+          size="xs"
+          onClick={() => navigate("/")}
+          className={classes.collapseButton}
+        >
+          <img src="/bountee.svg" alt="Logo" className="h-8" />
+        </Button>
+          }
         </Group>
         {links}
       </div>

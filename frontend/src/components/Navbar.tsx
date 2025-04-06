@@ -13,7 +13,7 @@ export default function NavBar() {
   const { user } = useAuth();
 
   return (
-    <Navbar className="w-full bg-white px-2 py-2" height="3rem">
+    <Navbar className="px-0 py-2" height="3rem">
       <NavbarContent justify="start">
         <NavbarBrand>
             <Link href="/" className="flex items-center">
@@ -23,7 +23,7 @@ export default function NavBar() {
       </NavbarContent>
       
       <NavbarContent 
-        className=" sm:flex gap-4" 
+        className="sm:flex gap-4" 
         justify="end"
       >
 
@@ -31,7 +31,6 @@ export default function NavBar() {
           href={user ? "/profile" : "/login"}
         >
             <UserIcon className="size-5" />
-             
         </Link>
           
       </NavbarContent>

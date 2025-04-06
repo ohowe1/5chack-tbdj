@@ -1,7 +1,7 @@
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
 import { Button, Link } from '@heroui/react';
-import { PencilIcon } from "@heroicons/react/24/outline";
+import { IconEdit} from "@tabler/icons-react";
 import { TPostFilled } from "shared/types/post";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
@@ -36,10 +36,8 @@ function PostDetails() {
     <DefaultLayout>
       <div className="flex flex-col my-4">
         <div className="my-2">
-          <div className='flex flex-row justify-between items-center'>
-            <h1 className="text-3xl font-bold">{postData?.title}</h1>
-            
-            {
+          {/* <div className="flex flex-row justify-end	">
+          {
               user?._id == postData?.author._id ? 
               <Button 
                 className='bg-[#67c2ce]' 
@@ -53,6 +51,29 @@ function PostDetails() {
               </Button> :
               null
             }
+          </div> */}
+        
+          <div className='flex flex-row justify-between items-center'>
+            <div className='flex flex-row gap-4 items-center'>
+              <h1 className="text-3xl font-bold">{postData?.title}</h1>
+              {
+              user?._id == postData?.author._id ? 
+              <Button 
+                className='bg-default' 
+                startContent={<IconEdit className='size-4'/>}
+                isIconOnly
+                radius="full"
+                size="sm"
+                as={Link}
+                href={`/edit-post/${postData?._id}`}
+              >
+                
+              </Button> :
+              null
+            }
+            </div>
+            <h1 className="text-3xl font-bold text-[#4db7c5]">$ {postData?.total_backed}</h1>
+            
 
           </div>
           
@@ -75,7 +96,7 @@ function PostDetails() {
 
         <div className='flex flex-row justify-center items-center gap-2'>
           <Button
-          className='mt-8 bg-gray-400'
+          className='mt-8'
           as={Link}
           href={`/back-bounty/${id}`}
           >
@@ -84,9 +105,9 @@ function PostDetails() {
           <Button
           as={Link}
           href={`/complete-bounty/${postData?._id}`}
-          className='mt-8'
+          className='mt-8 bg-emerald-400'
           >
-            Complete Bounty
+            Claim Bounty
           </Button>
         </div>
 

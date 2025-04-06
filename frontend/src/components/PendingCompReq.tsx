@@ -3,14 +3,26 @@ import { Alert, Card, Text, Group, Button, Avatar, Stack } from "@mantine/core"
 import { IconChevronDown, IconInfoCircle, IconX } from "@tabler/icons-react"
 import classes from "./css/PendingCompReq.module.css"
 import type { TPostCompletionRequestFilled } from "shared/types/post"
+import { fetchAPI } from "../utils/api";
+import { useNavigate } from "react-router"
 
-export function PendingCompletionRequest({ completionRequest }: { completionRequest: TPostCompletionRequestFilled }) {
+
+export function PendingCompletionRequest({ completionRequest, onHandled }:{
+  completionRequest: TPostCompletionRequestFilled;
+  onHandled: () => void;
+}) {
   const [expanded, setExpanded] = useState(false)
   const icon = <IconInfoCircle />
-
   // Toggle expanded state
   const toggleExpanded = () => {
     setExpanded(!expanded)
+  }
+
+  const approveDenyRequests = async (status: string) => {
+    const statusRequest = await fetchAPI(`completions/${completionRequest._id}/gavel`, "POST", {
+      decision: status
+    })
+    onHandled();    
   }
 
   // Compact alert view
@@ -24,12 +36,13 @@ export function PendingCompletionRequest({ completionRequest }: { completionRequ
         title="Pending Completion Request"
         icon={icon}
         classNames={{ root: classes.alertRoot }}
+        onClick={toggleExpanded}
       >
         <div className={classes.alertContent}>
           <div>
             {completionRequest.post.title} completed by {completionRequest.requester.displayName} is pending review.
           </div>
-          <Button variant="subtle" color="cyan" size="xs" onClick={toggleExpanded} className={classes.checkButton}>
+          <Button variant="subtle" color="cyan" size="xs" className={classes.checkButton}>
             <IconChevronDown size={18} />
           </Button>
         </div>
@@ -40,7 +53,7 @@ export function PendingCompletionRequest({ completionRequest }: { completionRequ
   // Expanded card view
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className={classes.expandedCard}>
-      <Card.Section className={classes.cardHeader} p="md">
+      <Card.Section className={classes.cardHeader} onClick={toggleExpanded} p="md">
         <Group justify="space-between">
           <Group>
             <IconInfoCircle color="var(--mantine-color-cyan-6)" size={24} />
@@ -52,7 +65,6 @@ export function PendingCompletionRequest({ completionRequest }: { completionRequ
             variant="subtle"
             color="gray"
             size="xs"
-            onClick={toggleExpanded}
             className={classes.closeExpandedButton}
           >
             <IconX size={18} />
@@ -84,10 +96,17 @@ export function PendingCompletionRequest({ completionRequest }: { completionRequ
         )}
 
         <Group justify="flex-end" mt="md">
-          <Button variant="outline" color="red">
+          <Button 
+            variant="outline" 
+            color="red"
+            onClick={() => approveDenyRequests("decline")}
+          >
             Decline
           </Button>
-          <Button color="green">Accept</Button>
+          <Button 
+            color="green" 
+            onClick={() => approveDenyRequests("approve")}
+          >Accept</Button>
         </Group>
       </Stack>
     </Card>

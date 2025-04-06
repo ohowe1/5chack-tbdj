@@ -8,7 +8,7 @@ import ProfileLayout from "../components/ProfileLayout";
 // import { TPostCompletionRequest } from "shared/types/post";
 import { PendingCompletionRequest } from "../components/PendingCompReq";
 import { TPostCompletionRequestFilled } from "shared/types/post";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchAPI } from "../utils/api";
 
 export default function NotificationsPage() {
@@ -16,17 +16,16 @@ export default function NotificationsPage() {
     TPostCompletionRequestFilled[]
   >([]);
 
-  useEffect(() => {
-    async function fetchPendingRequests() {
-      const response = await fetchAPI("completions/to_review", "GET");
-        console.log(response)
-      if (response && Array.isArray(response)) {
-        setPendingRequests(response as TPostCompletionRequestFilled[]);
-      } else {
-        console.error("Failed to fetch pending requests");
-      }
+  const fetchPendingRequests = useCallback(async () => {
+    const response = await fetchAPI("completions/to_review", "GET");
+    if (response && Array.isArray(response)) {
+      setPendingRequests(response as TPostCompletionRequestFilled[]);
+    } else {
+      console.error("Failed to fetch pending requests");
     }
+  }, [])
 
+  useEffect(() => {
     fetchPendingRequests();
   }, []);
 
@@ -41,10 +40,14 @@ export default function NotificationsPage() {
           <p className="text-gray-500">No pending completion requests.</p>
         ) : (
           pendingRequests.map((request) => (
-            <PendingCompletionRequest
-              key={request._id.toString()}
-              completionRequest={request}
-            />
+            <div className='py-2'>
+              <PendingCompletionRequest
+                key={request._id.toString()}
+                completionRequest={request}
+                onHandled={fetchPendingRequests}
+              />
+            </div>
+
           ))
         )}
       </ProfileLayout>

@@ -55,7 +55,7 @@ function BackBounty() {
               <PayPalScriptProvider options={initialOptions}>
                 <PayPalButtons />
               </PayPalScriptProvider>
-            <Link className='text-sm text-gray-500' href="/">
+            <Link className='text-sm ' href="/">
               Skip
             </Link>
             </div>
