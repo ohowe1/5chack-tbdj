@@ -11,7 +11,7 @@ import {
   IconChevronLeft,
   IconChevronRight,
 } from "@tabler/icons-react";
-import { Code, Group, Anchor, Button, Tooltip } from "@mantine/core";
+import { Code, Group, Anchor, Button } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import classes from "./css/NavbarSimple.module.css";
 
