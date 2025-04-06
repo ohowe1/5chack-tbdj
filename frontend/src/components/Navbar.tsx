@@ -8,8 +8,9 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
-  Button
+  
 } from "@heroui/react"
+import { Button } from '@mantine/core';
 import {
   HomeIcon,
   UserIcon,
@@ -34,19 +35,12 @@ export default function NavBar() {
       <NavbarContent 
         className=" sm:flex gap-4" 
       >
-          <Button 
-              variant="flat" 
-              as={Link}
-              href={loggedIn ? "/profile" : "/login"}
-              size="sm"
-              isIconOnly
-              startContent={
-                <UserIcon className="size-5" />
-              }
-              color='primary'
-            > 
-             
-          </Button>
+        <Link 
+          href={loggedIn ? "/profile" : "/login"}
+        >
+             <UserIcon className="size-5" />
+        </Link>
+          
       </NavbarContent>
     </Navbar>
   )

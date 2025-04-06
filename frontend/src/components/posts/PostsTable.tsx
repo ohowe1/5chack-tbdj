@@ -6,7 +6,6 @@ function PostsTable() {
 
   return (
       <div className="">
-        <h2>Table:</h2>
         <PostCard />
       </div>
   );

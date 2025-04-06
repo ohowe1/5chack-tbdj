@@ -1,6 +1,6 @@
 import DefaultLayout from "../components/DefaultLayout";
 import { useParams } from "react-router-dom";
-import {Button} from "@heroui/react";
+import { Button } from '@mantine/core';
 
 
 function PostDetails() {
@@ -19,6 +19,7 @@ function PostDetails() {
         <p className='break-all'>Description DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription DescriptionDescription Description Description</p>
 
         <Button
+        className='w-1/2 mx-auto mt-8'
         >
           Sign Me Up!
         </Button>
