@@ -42,9 +42,7 @@ router.get("/:post_id", async (req: Request, res: Response) => {
     return;
   }
 
-  const post = await getPost(post_id, {
-    filter: { organization: reqUser.organization },
-  });
+  const post = await getPost(post_id, reqUser.organization);
 
   if (!post) {
     res.status(404).json({ error: "Post not found" });
@@ -92,14 +90,13 @@ router.put("/:post_id", async (req: Request, res: Response) => {
     res.status(400).json({ error: "Post ID is required" });
     return;
   }
-  const post = await getPost(post_id, {
-    filter: { organization: user.organization },
-  });
+  const post = await getPost(post_id, user.organization);
   if (!post) {
     res.status(404).json({ error: "Post not found" });
     return;
   }
-  if (post.author !== user._id) {
+
+  if (!(post.author._id).equals(user._id)) {
     res
       .status(403)
       .json({ error: "You are not authorized to update this post" });

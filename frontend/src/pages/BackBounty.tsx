@@ -1,8 +1,6 @@
 import DefaultLayout from "../components/DefaultLayout";
 import {
-  TextInput,
   NumberInput,
-  Textarea, 
 } from "@mantine/core";
 import { Button, Link } from "@heroui/react";
 import { fetchAPI } from "../utils/api";
@@ -18,7 +16,7 @@ function BackBounty() {
     e.preventDefault();
 
     const data = new FormData(e.currentTarget);
-    const createdBounty = await fetchAPI(`back/${id}`, "POST", {
+    await fetchAPI(`back/${id}`, "POST", {
       amount: parseInt(data.get("amount") as string),
       })
     

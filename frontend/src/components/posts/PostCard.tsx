@@ -27,7 +27,7 @@ export default function PostCard({ post }: { post: TPostFilled }) {
               </h3>
             </div>
             <div>
-              <h3 className="font-bold text-sm">${post.total_backed}</h3>
+              <h3 className="font-bold text-sm text-[#4db7c5]">${post.total_backed}</h3>
             </div>
           </div>
         </CardBody>

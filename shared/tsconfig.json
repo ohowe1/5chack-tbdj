@@ -1,9 +1,19 @@
 {
-  "extends": "../tsconfig-base.json",
   "compilerOptions": {
     "sourceRoot": ".",
     "baseUrl": ".",
-    "rootDir": "."
+    "rootDir": ".",
+    "composite": true,
+    "target": "es2021",
+    "module": "es2022",
+    "moduleResolution": "node",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext"]
   },
   "include": ["**/*.ts", "**/*.d.ts", "**/*.tsx", "**/*.test.ts"]
 }

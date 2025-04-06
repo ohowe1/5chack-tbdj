@@ -5,7 +5,10 @@ import { Router, Request, Response } from "express";
 import { POST_BACKER_STATUS } from "shared/types/post";
 import { HydratedDocument } from "mongoose";
 import { TUser } from "shared/types/user";
+import { ensureAuthenticated } from "../middleware/auth.middleware";
 const router = Router();
+
+router.use(ensureAuthenticated);
 
 router.post("/:post_id", async (req: Request, res: Response) => {
   const post_id = req.params.post_id;
@@ -20,7 +23,7 @@ router.post("/:post_id", async (req: Request, res: Response) => {
   console.log(post_id);
   console.log(user)
 
-  const post = await getPost(post_id);
+  const post = await getPost(post_id, user.organization);
   if (!post) {
     res.status(404).json({ error: "Post not found" });
     return;

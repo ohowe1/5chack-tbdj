@@ -13,14 +13,13 @@ import {
 import {
   HomeIcon,
   UserIcon,
-  
 } from "@heroicons/react/24/outline";
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useAuth } from '../context/AuthContext';
+
 
 export default function NavBar() {
-
-  const [loggedIn , setLoggedIn] = useState<boolean>(false);
-  // Implement checking if user is logged in 
+  const { user, loading } = useAuth();
 
   return (
     <Navbar className="w-full bg-white px-2 py-2" height="3rem">
@@ -38,9 +37,8 @@ export default function NavBar() {
       >
 
         <Link 
-          href={loggedIn ? "/profile" : "/login"}
+          href={user ? "/profile" : "/login"}
         >
-
             <UserIcon className="size-5" />
              
         </Link>

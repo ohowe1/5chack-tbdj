@@ -12,6 +12,13 @@ import '@mantine/core/styles.css';
 import { createTheme, MantineProvider } from '@mantine/core';
 import BackBounty from './pages/BackBounty';
 import Feed from "./pages/Feed";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import PostDetails from "./pages/PostDetails";
+import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
+import CompleteBounty from "./pages/CompleteBounty";
+
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import "@mantine/core/styles.css";
 
@@ -39,7 +46,9 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/post/:id" element={<PostDetails />} />
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/edit-post/:id" element={<EditPost />} />
           <Route path="/back-bounty/:id" element={<BackBounty />} />
+          <Route path="/complete-bounty/:id" element={<CompleteBounty />} />
         </Route>
       </Routes>
     </MantineProvider>
