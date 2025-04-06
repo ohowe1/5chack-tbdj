@@ -52,14 +52,14 @@ router.post("/:completion_id/gavel", async (req, res) => {
 
   const { completion_id } = req.params;
   const { decision } = req.body as {
-    decision?: "approve" | "reject";
+    decision?: "approve" | "decline";
   };
 
   if (!completion_id) {
     res.status(400).json({ error: "Completion ID is required" });
     return;
   }
-  if (!decision || (decision !== "approve" && decision !== "reject")) {
+  if (!decision || (decision !== "approve" && decision !== "decline")) {
     res.status(400).json({ error: "Decision must be 'approve' or 'reject'" });
     return;
   }
@@ -72,15 +72,16 @@ router.post("/:completion_id/gavel", async (req, res) => {
   }
 
   if (completionRequest.post.author._id !== user._id) {
-    res.status(403).json({ error: "You are not authorized to make this decision" });
+    res
+      .status(403)
+      .json({ error: "You are not authorized to make this decision" });
     return;
   }
 
-  if ( decision === "approve") {
+  if (decision === "approve") {
     // todo handle payment
     completionRequest.status = POST_COMPLETION_REQUEST_STATUS.APPROVED; // Update the status to approved
-  }
-  else if (decision === "reject") {
+  } else if (decision === "decline") {
     completionRequest.status = POST_COMPLETION_REQUEST_STATUS.DENIED; // Update the status to denied
   }
 
