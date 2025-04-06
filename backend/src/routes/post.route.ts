@@ -5,7 +5,7 @@ import {
 } from "../controllers/post.controller";
 import { Router, Request, Response } from "express";
 import { ensureAuthenticated } from "../middleware/auth.middleware";
-import { POST_BACKER_STATUS, POST_STATUS } from "shared/types/post";
+import { POST_STATUS } from "shared/types/post";
 import { HydratedDocument } from "mongoose";
 import { TUser } from "shared/types/user";
 
@@ -35,13 +35,17 @@ router.get(
 );
 
 router.get("/:post_id", async (req: Request, res: Response) => {
+  const reqUser = req.user as HydratedDocument<TUser>;
   const post_id = req.params.post_id;
   if (!post_id) {
     res.status(400).json({ error: "Post ID is required" });
     return;
   }
 
-  const post = await getPost(post_id);
+  const post = await getPost(post_id, {
+    filter: { organization: reqUser.organization },
+  });
+
   if (!post) {
     res.status(404).json({ error: "Post not found" });
     return;
@@ -88,13 +92,17 @@ router.put("/:post_id", async (req: Request, res: Response) => {
     res.status(400).json({ error: "Post ID is required" });
     return;
   }
-  const post = await getPost(post_id);
+  const post = await getPost(post_id, {
+    filter: { organization: user.organization },
+  });
   if (!post) {
     res.status(404).json({ error: "Post not found" });
     return;
   }
   if (post.author !== user._id) {
-    res.status(403).json({ error: "You are not authorized to update this post" });
+    res
+      .status(403)
+      .json({ error: "You are not authorized to update this post" });
     return;
   }
 
@@ -117,44 +125,6 @@ router.put("/:post_id", async (req: Request, res: Response) => {
     }
   }
   await post.save();
-  res.status(200).json(post);
-});
-
-router.post("/back/:post_id", async (req: Request, res: Response) => {
-  const post_id = req.params.post_id;
-  const user = req.user as HydratedDocument<TUser>;
-  const { amount } = req.body;
-
-  if (!post_id || !amount) {
-    res.status(400).json({ error: "Post UUID, and amount are required" });
-    return;
-  }
-
-  const post = await getPost(post_id);
-  if (!post) {
-    res.status(404).json({ error: "Post not found" });
-    return;
-  }
-
-  // Check if the amount is valid
-  if (amount <= 0) {
-    res.status(400).json({ error: "Amount must be greater than zero" });
-    return;
-  }
-
-  // TODO handle payment
-
-  // Add the backer to the post's backers array
-  post.backers.push({
-    user: user._id,
-    amount: amount,
-    back_date: new Date(),
-    status: POST_BACKER_STATUS.PENDING, // Assuming 0 means pending
-  });
-
-  // Save the updated post
-  await post.save();
-
   res.status(200).json(post);
 });
 

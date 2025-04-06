@@ -1,16 +1,11 @@
 import { Posts } from "../models/post.model";
 import mongoose, { HydratedDocument } from "mongoose";
 import { TPost } from "shared/types/post";
-
-export interface Options {
-  filter?: Record<string, any>;
-  fields?: string | Record<string, 1 | 0>;
-  sort?: Record<string, 1 | -1>;
-}
+import { QueryOptions } from "./controller";
 
 function populatePostAndApplyOptions(
   query: mongoose.Query<any[], any, any, TPost>,
-  options: Options = {}
+  options: QueryOptions = {}
 ) {
   let q = query.populate("author").populate("organization");
 
@@ -28,13 +23,13 @@ export async function getPosts() {
   return populatePostAndApplyOptions(Posts.find());
 }
 
-export async function getPost(post_uuid: string | mongoose.Types.ObjectId) {
-  return populatePostAndApplyOptions(Posts.findOne({ uuid: post_uuid }));
+export async function getPost(post_id: string | mongoose.Types.ObjectId, options: QueryOptions = {}) {
+  return populatePostAndApplyOptions(Posts.findOne({ uuid: post_id }), options);
 }
 
 export async function getPostsByOrganization(
   organization_id: string | mongoose.Types.ObjectId,
-  options: Options = {}
+  options: QueryOptions = {}
 ) {
   return populatePostAndApplyOptions(
     Posts.find({ organization: organization_id }),
