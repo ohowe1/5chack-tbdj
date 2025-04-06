@@ -20,7 +20,7 @@ import { useAuth } from "../context/AuthContext";
 const data = [
   { link: "/profile/notifications", label: "Notifications", icon: IconBellRinging },
   { link: "/profile/outgoing", label: "Outgoing Bountees", icon: IconAd2 },
-  { link: "/profile/incoming", label: "Incoming Bountees", icon: IconAlbum },
+  { link: "/profile/finished", label: "Finished Bountees", icon: IconAlbum },
   { link: "/profile/billing", label: "Billing", icon: IconReceipt2 },
   { link: "/profile/settings", label: "Settings", icon: IconSettings },
 ];

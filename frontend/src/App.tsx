@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import NotificationsPage from "./pages/Notifications.tsx";
 import OutgoingBounteesPage from "./pages/OutgoingBountees.tsx";
-import IncomingBounteesPage from "./pages/IncomingBountees.tsx";
+import IncomingBounteesPage from "./pages/FInishedBountees.tsx";
 import BillingPage from "./pages/Billing.tsx";
 import SettingsPage from "./pages/Settings.tsx";
 import "@mantine/core/styles.css";
@@ -17,6 +17,7 @@ import CompleteBounty from "./pages/CompleteBounty";
 
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import "@mantine/core/styles.css";
+import FinishedBounteesPage from "./pages/FInishedBountees.tsx";
 
 const theme = createTheme({
   /** Put your mantine theme override here */
@@ -41,7 +42,7 @@ function App() {
         <Route path="/post/:id" element={<PostDetails />} />
         <Route path="/profile/notifications" element={<NotificationsPage />} />
         <Route path="/profile/outgoing" element={<OutgoingBounteesPage />} />
-        <Route path="/profile/incoming" element={<IncomingBounteesPage />} />
+        <Route path="/profile/finished" element={<FinishedBounteesPage />} />
         <Route path="/profile/billing" element={<BillingPage />} />
         <Route path="/profile/settings" element={<SettingsPage />} />
         <Route path="/create-post" element={<CreatePost />} />
