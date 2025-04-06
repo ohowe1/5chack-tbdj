@@ -8,7 +8,7 @@ function PostsTable() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await fetchAPI("posts", "GET");
+      const response = await fetchAPI("posts/feed", "GET");
 
       if (response && Array.isArray(response)) {
         setPosts(response as TPost[]);

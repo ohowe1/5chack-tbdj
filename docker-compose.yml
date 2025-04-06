@@ -18,13 +18,11 @@ services:
     image: mongo:7
     networks:
       - backend
-    expose:
-      - 27017
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: 5chack-tbdj
       MONGO_INITDB_ROOT_PASSWORD: local_dev
-    volumes:
-      - db-data:/data/db
   frontend:
     image: 5chack-tbdj-dev-base
     depends_on: &base

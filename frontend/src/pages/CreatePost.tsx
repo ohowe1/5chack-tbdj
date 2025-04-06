@@ -14,12 +14,9 @@ function CreatePost() {
 
     const data = new FormData(e.currentTarget);
     console.log(data.get("title"));
-    const newPost = await fetchAPI("posts", 
-      "POST", 
-      {
-        title: data.get("title"),
-        description: data.get("description"),
-    })
+    await fetchAPI("posts", "POST", {
+      title: data.get("title"),
+      description: data.get("description"),})
 
   }
 

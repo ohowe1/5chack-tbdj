@@ -4,6 +4,7 @@ import { Logger } from "pino";
 const connectDB = async (logger: Logger) => {
     try {
         // Use the MONGO_URI from the environment variables
+        console.log(process.env.MONGO_URI);
         const mongoUri = process.env.MONGO_URI;
 
         if (!mongoUri) {

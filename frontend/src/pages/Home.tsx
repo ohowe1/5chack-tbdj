@@ -1,7 +1,9 @@
 import DefaultLayout from "../components/DefaultLayout";
 import PostsTable from "../components/posts/PostsTable";
-import {Link} from "@heroui/react"
-import {Button} from '@mantine/core';
+import {
+  Link,
+  Button
+} from "@heroui/react"
 import {PlusIcon} from "@heroicons/react/24/outline";
 
 function Home() {
@@ -18,9 +20,9 @@ function Home() {
           href="/create-post"
         >
         <Button 
-          className='p-0 absolute right-0 bottom-2 rounded'
-          radius="xl"
-          size="md"
+          className='absolute right-0 bottom-2'
+          isIconOnly
+          radius="full"
         >
           <PlusIcon className="size-6" />
         </Button>

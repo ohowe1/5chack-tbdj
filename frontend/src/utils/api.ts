@@ -3,7 +3,7 @@ export async function fetchAPI(
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
   body?: unknown
 ): Promise<unknown> {
-  const url = `http://localhost:3000/${endpoint}`;
+  const url = `http://localhost:8080/${endpoint}`;
 
   const options: RequestInit = {
     method,

@@ -36,10 +36,13 @@ export default function NavBar() {
         className=" sm:flex gap-4" 
         justify="end"
       >
+
         <Link 
           href={loggedIn ? "/profile" : "/login"}
         >
-             <UserIcon className="size-5" />
+
+            <UserIcon className="size-5" />
+             
         </Link>
           
       </NavbarContent>

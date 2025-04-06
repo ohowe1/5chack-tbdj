@@ -36,7 +36,7 @@ const options: cors.CorsOptions = {
     `http://localhost:${process.env.FRONTEND_PORT || 3000}`,
     `http://localhost:${process.env.PORT || 8080}`
   ],
-  credentials: true
+  credentials: true,
 };
 logger.debug("CORS setup");
 
