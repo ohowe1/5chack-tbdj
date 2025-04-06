@@ -10,6 +10,10 @@ export const PostBacker = new mongoose.Schema<TPostBacker>({
   amount: { type: Number, required: true, min: 0 },
   back_date: { type: Date, default: Date.now },
   status: { type: Number, required: true, default: 0 },
+  order_id: {
+    type: String,
+    required: false, // Optional, can be set after payment is confirmed}
+  }
 });
 
 export const Post = new mongoose.Schema<TPost>(
