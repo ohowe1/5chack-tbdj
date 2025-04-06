@@ -12,16 +12,11 @@ export async function fetchAPI(
     ...(typeof body !== 'undefined' ? { body: JSON.stringify(body) } : {}),
   };
 
-  try {
-    const response = await fetch(url, options);
+  const response = await fetch(url, options);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response.json();
-  } catch (error) {
-    console.error('Error fetching API:', error);
-    throw error;
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
   }
+
+  return response.json();
 }

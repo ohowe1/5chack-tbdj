@@ -1,25 +1,7 @@
-import { useEffect, useState } from "react";
 import { TPost } from "../../../../shared/types/post";
 import PostCard from "./PostCard";
-import { fetchAPI } from "../../utils/api";
 
-function PostsTable() {
-  const [posts, setPosts] = useState<TPost[]>([]);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const response = await fetchAPI("posts/feed", "GET");
-
-      if (response && Array.isArray(response)) {
-        setPosts(response as TPost[]);
-      } else {
-        console.error("Failed to fetch posts data");
-      }
-    }
-    fetchPosts();
-  }, []);
-
-
+function PostsTable({ posts }: { posts: TPost[] }) {
   return (
       <div className="">
         {
@@ -34,4 +16,5 @@ function PostsTable() {
       </div>
   );
 }
+
 export default PostsTable;
