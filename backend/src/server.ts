@@ -9,6 +9,7 @@ import loggerMiddleware from "pino-http";
 import indexRoutes from "./routes/index.route";
 import postRoutes from "./routes/post.route";
 import backRoutes from "./routes/back.route";
+import userRoutes from "./routes/user.route";
 
 const app: Application = express();
 
@@ -35,6 +36,7 @@ const options: cors.CorsOptions = {
     `http://localhost:${process.env.FRONTEND_PORT || 3000}`,
     `http://localhost:${process.env.PORT || 8080}`
   ],
+  credentials: true
 };
 logger.debug("CORS setup");
 
@@ -49,6 +51,7 @@ app.use(
 app.use('/', indexRoutes);
 app.use('/posts', postRoutes)
 app.use('/back', backRoutes)
+app.use('/user', userRoutes)
 
 app.get(
   '/auth/google',

@@ -1,6 +1,6 @@
-import { getUserById } from "controllers/user.controller";
+import { getUserById } from "../controllers/user.controller";
 import { Router } from "express";
-import { ensureAuthenticated } from "middleware/auth.middleware";
+import { ensureAuthenticated } from "../middleware/auth.middleware";
 import { HydratedDocument } from "mongoose";
 import { TUser } from "shared/types/user";
 
@@ -27,4 +27,4 @@ router.get("/:user_id", async (req, res) => {
   }
   res.status(200).json(foundUser);
 });
-
+export default router;

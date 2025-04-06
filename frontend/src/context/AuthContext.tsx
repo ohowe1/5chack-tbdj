@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // Since our user route is protected via passport, if not logged in this call should fail.
       const res = await fetchAPI("user", "GET");
       setUser(res as TUser);
-    } catch (error) {
+    } catch {
       setUser(null);
     } finally {
       setLoading(false);
