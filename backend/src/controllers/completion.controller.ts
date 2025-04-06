@@ -85,7 +85,7 @@ export async function getCompletionRequestsByPostAuthor(
 export async function approveCompletionRequest(
   requestId: string | mongoose.Types.ObjectId
 ) {
-  const request = await PostCompletionRequests.findById(requestId);
+  const request = await PostCompletionRequests.findById(requestId).populate("post requester");
 
   if (!request) {
     throw new Error("Completion request not found");
@@ -109,7 +109,7 @@ export async function approveCompletionRequest(
 
   const totalBacked = post.total_backed || 0;
 
-  const emailToSendItTo = post.author.payout_email || post.author.email;
+  const emailToSendItTo = request.requester.payout_email || request.requester.email;
   if (!emailToSendItTo) {
     throw new Error(
       "Post author does not have a valid email for notifications."

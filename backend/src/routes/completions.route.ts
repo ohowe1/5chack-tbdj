@@ -77,7 +77,7 @@ router.post("/:completion_id/gavel", async (req, res) => {
     return;
   }
 
-  if (!(completionRequest.requester._id).equals(user._id)) {
+  if (!(completionRequest.post.author).equals(user._id)) {
     res
       .status(403)
       .json({ error: "You are not authorized to make this decision" });

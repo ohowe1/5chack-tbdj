@@ -5,7 +5,6 @@ import {
   IconAd2,
   IconAlbum,
   IconLogout,
-  IconReceipt2,
   IconSettings,
   IconChevronLeft,
   IconChevronRight,
