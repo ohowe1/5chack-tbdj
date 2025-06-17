@@ -11,7 +11,7 @@
 
 ## Team
 
-- [Jasmine Liu](https://github.com/jassmineliu)
+- [Jasmine Liu](https://github.com/jasmineeliu)
 - [Angie Tsai](https://github.com/angelinatsai04)
 - [Uddant Patodia](https://github.com/uddant)
 - [Oliver Howe](https://github.com/ohowe1)
